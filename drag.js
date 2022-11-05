@@ -8,7 +8,7 @@ var offx = canvas.offsetLeft;
 var offy = canvas.offsetTop;
 var lastX = 0,lastY=0;
 var active = 0;
-var elems = 1;
+var elems = 0;
 
 var boxes = new Array();
 
@@ -54,7 +54,7 @@ $('#cvs').mousedown(function(e){
         lastY = y;
         oc.clearRect(0,0,1200,800);
         c.clearRect(0,0,1200,800);
-        for(var i=1;i<elems;i++){
+        for(var i=0;i<elems;i++){
           boxes[i].draw();
         }
       }
