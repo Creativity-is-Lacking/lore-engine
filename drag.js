@@ -12,6 +12,7 @@ var elems = 0;
 
 var boxes = new Array();
 
+$(document).ready(function(){
 $('#cvs').mousedown(function(e){
   var x = e.pageX-offx;
   var y = e.pageY-offy;
