@@ -49,7 +49,7 @@ $('#cvs').mousedown(function(e){
         $(window).bind("mousemove",function(e){
         var x = e.pageX-offx;
         var y = e.pageY-offy;
-        if(active>0){
+        if(active>=0){
           boxes[active].x+=x-lastX;
           boxes[active].y+=y-lastY;
         }
@@ -65,7 +65,7 @@ $('#cvs').mousedown(function(e){
   }
   $(window).bind('mouseup',function() {
       $(this).unbind('mousemove');
-      active = 0;
+      active = -1;
       oc.clearRect(0,0,1200,800);
       c.clearRect(0,0,1200,800);
       for(var i=0;i<elems;i++){
