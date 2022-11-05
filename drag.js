@@ -1,7 +1,7 @@
-var canvas = document.getElementById('cvs'),
-    c = canvas.getContext('2d'),
-    ocan = document.createElement("canvas"),
-    oc = ocan.getContext('2d');
+var canvas = document.getElementById('cvs');
+var c = canvas.getContext('2d');
+var ocan = document.createElement("canvas");
+var oc = ocan.getContext('2d');
 ocan.width=canvas.width;
 ocan.height=canvas.height;
 var offx = canvas.offsetLeft;
