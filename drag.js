@@ -19,7 +19,7 @@ $(document).ready(function(){
     var act = getID(x,y);
     
      var fly = $('#flyover');
-    if(act>0){
+    if(act>=0){
       fly.css('opacity',1.);
       fly.css('top',e.pageY+5+'px');
       fly.css('left',e.pageX+20+'px');
