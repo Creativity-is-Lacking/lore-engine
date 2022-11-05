@@ -1,6 +1,5 @@
 var button = document.getElementById("add");
 button.onclick = function(){
-  boxes = boxes.slice(1,3);
-  boxes.unshift();
-  elems = 2;
+  boxes.push(new uiBox(1,0,0,3,3,1));
+  elems++;
 };
