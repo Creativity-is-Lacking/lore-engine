@@ -7,39 +7,23 @@ ocan.height=canvas.height;
 var offx = canvas.offsetLeft;
 var offy = canvas.offsetTop;
 var lastX = 0,lastY=0;
-var active = 0;
+var active = -1;
 var elems = 0;
 
 var boxes = new Array();
 
-$(document).ready(function(){
-  $('#cvs').mousemove(function(e){
-    var x = e.pageX-offx;
-    var y = e.pageY-offy;
-    var act = getID(x,y);
-    
-     var fly = $('#flyover');
-    if(act>=0){
-      fly.css('opacity',1.);
-      fly.css('top',e.pageY+5+'px');
-      fly.css('left',e.pageX+20+'px');
-      fly.text("ID:"+act);
-    }
-  else $('#flyover').css('opacity',0.);
-                        
-  });
 $('#cvs').mousedown(function(e){
   var x = e.pageX-offx;
   var y = e.pageY-offy;
   active = getID(x,y);
   lastX = x;
   lastY = y;
-  if(active>0){
+  if(active>=0){
   if (boxes[active].isCorner(x,y)==1){
     $(window).bind("mousemove",function(e){
         var x = e.pageX-offx;
         var y = e.pageY-offy;
-      if(active>0){
+      if(active>=0){
       if(active<30){
         boxes[active].w += x-lastX;
         if(boxes[active].w<5) boxes[active].w = 5;
