@@ -8,20 +8,9 @@ var offx = canvas.offsetLeft;
 var offy = canvas.offsetTop;
 var lastX = 0,lastY=0;
 var active = 0;
-var elems = 100;
+var elems = 1;
 
 var boxes = new Array();
-
-for(var i=1;i<elems;i++){
-  if(i<30){
-  boxes[i]=new uiBox(i,Math.random()*600+50,Math.random()*400+20,Math.random()*200+10,Math.random()*150+10,randomColor());
-  boxes[i].draw();
-  }
-  else {
-  boxes[i]=new uiCircle(i,Math.random()*800+50,Math.random()*400+20,Math.random()*50+5,randomColor());
-  boxes[i].draw();
-  }
-}
 
 $(document).ready(function(){
   $('#cvs').mousemove(function(e){
