@@ -57,7 +57,7 @@ $('#cvs').mousedown(function(e){
         lastY = y;
         oc.clearRect(0,0,1200,800);
         c.clearRect(0,0,1200,800);
-        for(var i=1;i<elems;i++){
+        for(var i=0;i<elems;i++){
           boxes[i].draw();
         }
     });
