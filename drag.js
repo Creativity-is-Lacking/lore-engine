@@ -20,21 +20,8 @@ $('#cvs').mousedown(function(e){
   lastX = x;
   lastY = y;
   if(active>=0){
-  if (boxes[active].isCorner(x,y)==1){
-    $(window).bind("mousemove",function(e){
-        var x = e.pageX-offx;
-        var y = e.pageY-offy;
-      if(active>=0){
-      if(active<30){
-        boxes[active].w += x-lastX;
-        if(boxes[active].w<5) boxes[active].w = 5;
-        boxes[active].h += y-lastY;
-        if(boxes[active].h<5) boxes[active].h = 5;
-      }
-      else {
         boxes[active].r += x-lastX;
         if(boxes[active].r<5) boxes[active].r = 5;
-      }
         lastX = x;
         lastY = y;
         oc.clearRect(0,0,1200,800);
@@ -104,11 +91,6 @@ function uiBox(id,x,y,w,h,color){
     c.fillRect(this.x,this.y,this.w,this.h);
     oc.fillRect(this.x,this.y,this.w,this.h);
   }
-  this.isCorner = function(l,t){
-    var checkx = l > (this.x+this.w-10);
-    var checky = t > (this.y+this.h-10);
-    return (checkx&&checky);
-  }
 }
 
 function uiCircle(id,x,y,r,color){
@@ -128,9 +110,5 @@ function uiCircle(id,x,y,r,color){
     oc.closePath();
     c.fill();
     oc.fill();
-  }
-  this.isCorner = function(l,t){
-    var checkx = l > (this.x+this.r-10);
-    return (checkx);
   }
 }
