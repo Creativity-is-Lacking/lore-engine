@@ -31,7 +31,6 @@ $('#cvs').mousedown(function(e){
         }
       }
     });
-  }
   else {
         $(window).bind("mousemove",function(e){
         var x = e.pageX-offx;
