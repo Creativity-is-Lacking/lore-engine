@@ -53,7 +53,7 @@ function getID(x,y){
   //use blue channel as reference to
   //see if it's a fuzzy edge pixel
   if(p[2]==255) return p[0];
-  else return 0;
+  else return -1;
 }
 
 function uiBox(id,x,y,w,h,color){
