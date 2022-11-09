@@ -25,16 +25,6 @@ $('#cvs').mousedown(function(e){
         var x = e.pageX-offx;
         var y = e.pageY-offy;
       if(active>=0){
-      if(active<30){
-        boxes[active].w += x-lastX;
-        if(boxes[active].w<5) boxes[active].w = 5;
-        boxes[active].h += y-lastY;
-        if(boxes[active].h<5) boxes[active].h = 5;
-      }
-      else {
-        boxes[active].r += x-lastX;
-        if(boxes[active].r<5) boxes[active].r = 5;
-      }
         lastX = x;
         lastY = y;
         oc.clearRect(0,0,1200,800);
