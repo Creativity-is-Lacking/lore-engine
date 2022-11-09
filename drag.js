@@ -20,22 +20,6 @@ $('#cvs').mousedown(function(e){
   lastX = x;
   lastY = y;
   if(active>=0){
-  if (boxes[active].isCorner(x,y)==1){
-    $(window).bind("mousemove",function(e){
-        var x = e.pageX-offx;
-        var y = e.pageY-offy;
-      if(active>=0){
-        lastX = x;
-        lastY = y;
-        oc.clearRect(0,0,1200,800);
-        c.clearRect(0,0,1200,800);
-        for(var i=0;i<elems;i++){
-          boxes[i].draw();
-        }
-      }
-    });
-  }
-  else {
         $(window).bind("mousemove",function(e){
         var x = e.pageX-offx;
         var y = e.pageY-offy;
@@ -51,7 +35,6 @@ $('#cvs').mousedown(function(e){
           boxes[i].draw();
         }
     });
-  }
   }
   $(window).bind('mouseup',function() {
       $(this).unbind('mousemove');
