@@ -2,6 +2,7 @@ var canvas = document.getElementById('cvs');
 var c = canvas.getContext('2d');
 var ocan = document.createElement("canvas");
 var oc = ocan.getContext('2d');
+oc.willReadFrequently = true;
 ocan.width=canvas.width;
 ocan.height=canvas.height;
 var offx = canvas.offsetLeft;
