@@ -73,14 +73,6 @@ function getID(x,y){
   else return 0;
 }
 
-function randomColor(){
-    var cc = new Array();
-    var r = Math.random()*255;
-    var g = Math.random()*255;
-    var b = Math.random()*255;
-    return "#"+((r << 16) | (g << 8) | b).toString(16);
-}
-
 function uiBox(id,x,y,w,h,color){
   this.x = x;
   this.y = y;
@@ -93,11 +85,6 @@ function uiBox(id,x,y,w,h,color){
     oc.fillStyle = 'rgb('+this.id+',0,255)';
     c.fillRect(this.x,this.y,this.w,this.h);
     oc.fillRect(this.x,this.y,this.w,this.h);
-  }
-  this.isCorner = function(l,t){
-    var checkx = l > (this.x+this.w-10);
-    var checky = t > (this.y+this.h-10);
-    return (checkx&&checky);
   }
 }
 
@@ -118,9 +105,5 @@ function uiCircle(id,x,y,r,color){
     oc.closePath();
     c.fill();
     oc.fill();
-  }
-  this.isCorner = function(l,t){
-    var checkx = l > (this.x+this.r-10);
-    return (checkx);
   }
 }
