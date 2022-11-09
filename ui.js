@@ -5,5 +5,4 @@ button.onclick = function(){
   for(var i=0;i<elems;i++){
     boxes[i].draw();
   }
-  new uiBox(-1,0,0,oc.width,oc.height/10,"red").draw();
 };
