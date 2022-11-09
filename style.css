@@ -30,6 +30,10 @@ canvas {
   background-color: red;
 }
 
+.dropbtn:hover {
+  display: block;
+}
+
 .nav-li.dropdown {
   display: inline-block;
 }
