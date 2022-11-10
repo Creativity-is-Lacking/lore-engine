@@ -35,7 +35,20 @@
       <div id="Boxmodal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
-          <p>Some text in the Modal..</p>
+          <div style="display: flex;">
+            <div>
+              <p>use preset dimensions</p>
+              <input type="checkbox" id="useBoxDim">
+            </div>
+            <div>
+              <input type="number" id="boxWidth" min="1" max="1200">
+              <p> px height by </p>
+              <input type="number" id="boxHeight" min="1" max="800">
+              <p> px width</p>
+            </div>
+            <input type="color" id="boxColor">
+            <button id="boxAdd">Create Box</button>
+          </div>
         </div>
       </div>
       <canvas id="cvs" width="1200px" height="800px"></canvas>
