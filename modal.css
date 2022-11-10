@@ -37,3 +37,13 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.colFlex {
+  display: flex;
+  flex-direction: column;
+}
+
+.rowFlex {
+  display: flex;
+  flex-direction: row;
+}
