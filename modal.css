@@ -49,7 +49,7 @@
   place-items: center;
 }
 
-.rowFlex input [type] {
+.rowFlex input [type = "number"] {
   height: 20px;
   margin: 3px;
 }
