@@ -37,20 +37,26 @@
           <span class="close">&times;</span>
           <div class="colFlex">
             <div class="rowFlex">
-              <input type="checkbox" id="useBoxDim">
+              <input type="checkbox" id="useBoxDim" value="true">
               <p>use preset dimensions</p>
             </div>
-            <div class="rowFlex">
+            <div class="rowFlex" id="boxDimCont">
               <input type="number" id="boxWidth" min="1" max="1200">
               <p> px height by </p>
               <input type="number" id="boxHeight" min="1" max="800">
               <p> px width</p>
             </div>
             <div class="rowFlex">
-              <input type="checkbox" id="useBoxDim">
+              <input type="checkbox" id="useCustColor" value="true">
               <p>use color presets</p>
             </div>
             <input type="color" id="boxColor">
+            <div class="rowFlex" id="boxColorCont">
+              <button class="colorSel" id="boxBlue" style="background-color:midnightblue;"></button>
+              <button class="colorSel" id="boxMag" style="background-color:darkmagenta;"></button>
+              <button class="colorSel" id="boxMar" style="background-color:maroon;"></button>
+              <button class="colorSel" id="boxGrey" style="background-color:dimgrey;"></button>
+            </div>
             <button id="boxAdd">Create Box</button>
           </div>
         </div>
