@@ -47,9 +47,10 @@
   display: flex;
   flex-direction: row;
   place-items: center;
+  height: 50px;
 }
 
 .rowFlex input[type="number" i] {
-  height: 20px;
-  margin: 3px;
+  height: 12px;
+  margin: 4px;
 }
