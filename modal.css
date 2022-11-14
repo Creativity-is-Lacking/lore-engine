@@ -46,4 +46,10 @@
 .rowFlex {
   display: flex;
   flex-direction: row;
+  place-items: center;
+}
+
+.rowFlex input [type] {
+  height: 20px;
+  margin: 3px;
 }
