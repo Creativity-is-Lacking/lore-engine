@@ -51,7 +51,7 @@ useBoxCustColor.onclick = function() {
 }
 boxAdd.onclick = function() {
   let color = "#A020F0";
-  if(!boxCustColor.clicked){
+  if(!useBoxCustColor.clicked){
     if(boxBlue.style.value)
       color = "midnightblue";
     if(boxMag.style.value)
