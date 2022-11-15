@@ -3,7 +3,7 @@ var Boxbtn = document.getElementById("Boxbtn");
 var Boxspan = document.getElementsByClassName("close")[0];
 var useBoxDim = document.getElementById("useBoxDim");
 var boxDimCont = document.getElementById("boxDimCont");
-var useBoxCustColor = document.getElementById("useCustColor");
+var useBoxSetColor = document.getElementById("useCustColor");
 var boxColorCont = document.getElementById("boxColorCont");
 var boxCustColor = document.getElementById("boxColor");
 var boxHeight = document.getElementById("boxHeight");
@@ -15,7 +15,7 @@ var boxMar = document.getElementById("boxMar");
 var boxGrey = document.getElementById("boxGrey");
 
 useBoxDim.defaultChecked = true;
-useBoxCustColor.defaultChecked = true;
+useBoxSetColor.defaultChecked = true;
 boxDimCont.style.display = "none"
 boxCustColor.style.display = "none"
 boxBlue.style.value = false;
@@ -40,8 +40,8 @@ useBoxDim.onclick = function() {
   else
     boxDimCont.style.display = "inherit";
 }
-useBoxCustColor.onclick = function() {
-  if(useBoxCustColor.checked) {
+useBoxSetColor.onclick = function() {
+  if(useBoxSetColor.checked) {
     boxCustColor.style.display = "none";
     boxColorCont.style.display = "inherit";
   } else {
@@ -51,7 +51,7 @@ useBoxCustColor.onclick = function() {
 }
 boxAdd.onclick = function() {
   let color = "#A020F0";
-  if(!useBoxCustColor.checked){
+  if(useBoxSetColor.checked){
     if(boxBlue.style.value)
       color = "midnightblue";
     if(boxMag.style.value)
