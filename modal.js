@@ -18,10 +18,10 @@ useBoxDim.defaultChecked = true;
 useBoxCustColor.defaultChecked = true;
 boxDimCont.style.display = "none"
 boxCustColor.style.display = "none"
-boxBlue.style.value = "false";
-boxMag.style.value = "false";
-boxMar.style.value = "false";
-boxGrey.style.value = "false";
+boxBlue.style.value = false;
+boxMag.style.value = false;
+boxMar.style.value = false;
+boxGrey.style.value = false;
 
 boxBlue.onclick = function() {boxBlue.style.value = !boxBlue.style.value}
 boxMag.onclick = function() {boxMag.style.value = !boxMag.style.value}
@@ -69,6 +69,10 @@ boxAdd.onclick = function() {
     height = boxHeight.value;
   }
   boxes.push(new uiBox(elems,650,450,width,height,color));
+  elems++;
+  for(var i=0;i<elems;i++){
+    boxes[i].draw();
+  }
 }
 window.onclick = function(event) {
   if (event.target == Boxmodal) {
