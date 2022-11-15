@@ -80,6 +80,7 @@ canvas {
   opacity: 1;
   transition: opacity 0.6s;
   margin-bottom: 15px;
+  border-radius: 10px;
 }
 
 .alert.success {background-color: #04AA6D;}
@@ -99,4 +100,12 @@ canvas {
 
 .closebtn:hover {
   color: black;
+}
+
+#notifCont {
+ height: 5%;
+ width: 35%;
+ position: fixed;
+ bottom: 0px;
+ left: 0px;
 }
