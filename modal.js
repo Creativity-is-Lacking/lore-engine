@@ -27,6 +27,7 @@ boxBlue.onclick = function() {boxBlue.style.value = !boxBlue.style.value}
 boxMag.onclick = function() {boxMag.style.value = !boxMag.style.value}
 boxMar.onclick = function() {boxMar.style.value = !boxMar.style.value}
 boxGrey.onclick = function() {boxGrey.style.value = !boxGrey.style.value}
+
 Boxbtn.onclick = function() {
   Boxmodal.style.display = "block";
 }
@@ -60,7 +61,7 @@ boxAdd.onclick = function() {
     if(boxGrey.style.value)
       color = "dimgrey";
   } else {
-    //Cust color to be implemented
+    color = boxCustColor.value;
   }
   let width = 210;
   let height = 160;
@@ -73,6 +74,7 @@ boxAdd.onclick = function() {
   for(var i=0;i<elems;i++){
     boxes[i].draw();
   }
+  Boxmodal.style.display = "none";
 }
 window.onclick = function(event) {
   if (event.target == Boxmodal) {
