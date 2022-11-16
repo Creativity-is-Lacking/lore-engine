@@ -90,3 +90,20 @@ function uiCircle(id,x,y,r,color){
     oc.fill();
   }
 }
+
+function linkLine(){
+  this.draw = function(){
+    c.fillStyle = this.color;
+    oc.fillStyle = 'rgb('+this.id+',0,255)';
+    c.beginPath();
+    oc.beginPath();
+    ctx.moveTo(200,228);
+    ctx.bezierCurveTo(200,228,231,207,270,208);
+    ctx.bezierCurveTo(309,209,513,299,625,290);
+    ctx.bezierCurveTo(716,282.5,736,255,736,255);
+    c.closePath();
+    oc.closePath();
+    c.stroke();
+    oc.stroke();
+  }
+}
