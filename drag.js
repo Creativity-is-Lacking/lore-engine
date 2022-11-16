@@ -97,10 +97,14 @@ function linkLine(){
     oc.fillStyle = 'rgb('+this.id+',0,255)';
     c.beginPath();
     oc.beginPath();
-    ctx.moveTo(200,228);
-    ctx.bezierCurveTo(200,228,231,207,270,208);
-    ctx.bezierCurveTo(309,209,513,299,625,290);
-    ctx.bezierCurveTo(716,282.5,736,255,736,255);
+    c.moveTo(200,228);
+    c.bezierCurveTo(200,228,231,207,270,208);
+    c.bezierCurveTo(309,209,513,299,625,290);
+    c.bezierCurveTo(716,282.5,736,255,736,255);
+    oc.moveTo(200,228);
+    oc.bezierCurveTo(200,228,231,207,270,208);
+    oc.bezierCurveTo(309,209,513,299,625,290);
+    oc.bezierCurveTo(716,282.5,736,255,736,255);
     c.closePath();
     oc.closePath();
     c.stroke();
