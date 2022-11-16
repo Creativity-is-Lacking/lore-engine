@@ -94,16 +94,10 @@ function uiCircle(id,x,y,r,color){
 function linkLine(){
   this.draw = function(){
     c.strokeStyle = '#ffffff';
-    oc.strokeStyle = '#ffffff';
     c.beginPath();
-    oc.beginPath();
     c.moveTo(200,228);
-    oc.moveTo(200,228);
     c.bezierCurveTo(200,228,231,207,270,208);
-    oc.bezierCurveTo(716,282.5,736,255,736,255);
     c.closePath();
-    oc.closePath();
     c.stroke();
-    oc.stroke();
   }
 }
