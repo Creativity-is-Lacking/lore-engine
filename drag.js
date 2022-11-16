@@ -93,8 +93,8 @@ function uiCircle(id,x,y,r,color){
 
 function linkLine(){
   this.draw = function(){
-    c.fillStyle = this.color;
-    oc.fillStyle = 'rgb('+this.id+',0,255)';
+    c.strokeStyle = '#ffffff';
+    oc.strokeStyle = '#ffffff';
     c.beginPath();
     oc.beginPath();
     c.moveTo(200,228);
