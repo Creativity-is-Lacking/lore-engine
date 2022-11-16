@@ -95,9 +95,12 @@ function linkLine(){
   this.draw = function(){
     c.strokeStyle = '#ffffff';
     c.beginPath();
+    oc.beginPath();
     c.moveTo(200,228);
+    oc.moveTo(200,228);
     c.bezierCurveTo(200,228,231,207,270,208);
-    c.closePath();
+    oc.bezierCurveTo(200,228,231,207,270,208);
     c.stroke();
+    oc.stroke();
   }
 }
