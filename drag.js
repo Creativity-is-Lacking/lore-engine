@@ -91,15 +91,19 @@ function uiCircle(id,x,y,r,color){
   }
 }
 
-function linkLine(){
+function linkLine(id, box1, box2, color){
   this.draw = function(){
+    this.box1 = box1;
+    this.box2 = box2;
+    this.color = color;
+    this.id = id;
     c.strokeStyle = '#ffffff';
     c.beginPath();
     oc.beginPath();
-    c.moveTo(200,228);
-    oc.moveTo(200,228);
-    c.bezierCurveTo(200,228,231,207,270,208);
-    oc.bezierCurveTo(200,228,231,207,270,208);
+    c.moveTo(box1.x,box1.y);
+    oc.moveTo(box1.x,box1.y);
+    c.bezierCurveTo(box1.x,box1.y,231,207,box2.x,box2.y);
+    oc.bezierCurveTo(box1.x,box1.y,231,207,box2.x,box2.y);
     c.stroke();
     oc.stroke();
   }
