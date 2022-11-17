@@ -11,6 +11,7 @@ var active = -1;
 var elems = 0;
 
 var boxes = new Array();
+var links = new Array();
 
 $(document).ready(function(){
 $('#cvs').mousedown(function(e){
@@ -34,6 +35,9 @@ $('#cvs').mousedown(function(e){
         for(var i=0;i<elems;i++){
           boxes[i].draw();
         }
+        for(var i=0;i<links.length();i++){
+          links[i].draw();
+        }
     });
   }
   $(window).bind('mouseup',function() {
@@ -43,6 +47,9 @@ $('#cvs').mousedown(function(e){
       c.clearRect(0,0,1200,800);
       for(var i=0;i<elems;i++){
           boxes[i].draw();
+      }
+      for(var i=0;i<links.length();i++){
+          links[i].draw();
       }
   });
 });
@@ -102,8 +109,8 @@ function linkLine(id, box1, box2, color){
     oc.beginPath();
     c.moveTo(box1.x + box1.w,box1.y + (box1.h/2));
     oc.moveTo(box1.x + box1.w,box1.y + (box1.h/2));
-    c.bezierCurveTo(box1.x + box1.w,box1.y + (box1.h/2),231,207,box2.x,box2.y + (box2.h/2));
-    oc.bezierCurveTo(box1.x + box1.w,box1.y + (box1.h/2),231,207,box2.x,box2.y + (box2.h/2));
+    c.bezierCurveTo(box1.x + box1.w,box1.y + (box1.h/2),(box1.x + box1.w + box2.y)/2,(box1.x + box1.w + box2.y + (box2.h/2))/2,box2.x,box2.y + (box2.h/2));
+    oc.bezierCurveTo(box1.x + box1.w,box1.y + (box1.h/2),(box1.x + box1.w + box2.y)/2,(box1.x + box1.w + box2.y + (box2.h/2))/2,box2.x,box2.y + (box2.h/2));
     c.stroke();
     oc.stroke();
   }
