@@ -48,7 +48,7 @@ $('#cvs').mousedown(function(e){
       for(var i=0;i<elems;i++){
           boxes[i].draw();
       }
-      for(var i=0;i<links.length();i++){
+      for(var i=0;i<links.length;i++){
           links[i].draw();
       }
   });
