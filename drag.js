@@ -113,5 +113,7 @@ function linkLine(id, box1, box2, color){
     oc.bezierCurveTo(box1.x + box1.w,box1.y + (box1.h/2),(box1.x + box1.w + box2.y)/2,(box1.x + box1.w + box2.y + (box2.h/2))/2,box2.x,box2.y + (box2.h/2));
     c.stroke();
     oc.stroke();
+    c.fillRect((box1.x + box1.w + box2.y)/2-5,(box1.x + box1.w + box2.y + (box2.h/2))/2-5,10,10);
+    oc.beginPath((box1.x + box1.w + box2.y)/2-5,(box1.x + box1.w + box2.y + (box2.h/2))/2-5,10,10);
   }
 }
