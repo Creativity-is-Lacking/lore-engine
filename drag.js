@@ -9,9 +9,11 @@ var offy = canvas.offsetTop;
 var lastX = 0,lastY=0;
 var active = -1;
 var elems = 0;
+var mode = '';
 
 var boxes = new Array();
 var links = new Array();
+var highlights = new Array();
 
 $(document).ready(function(){
 $('#cvs').mousedown(function(e){
@@ -20,7 +22,21 @@ $('#cvs').mousedown(function(e){
   active = getID(x,y);
   lastX = x;
   lastY = y;
-  if(active>=0){
+  if(mode == 'link') {
+    if(active>=0){
+      let h = new uiBox(boxes[active].id,boxes[active].x-10,boxes[active].y-10,boxes[active].w+5,boxes[active].h+5,color);
+      h.draw();
+      highlights.push(h);
+      if(highlights.length>=2){
+        let l = new linkLine(highlights.length, highlights[0], highlights[1], '#ffffff')
+        l.draw();
+        links.push(l);
+        for(var i=0;i<highlights.length;i++){
+          highlights.pop();
+        }
+      }
+    }
+  } else if(active>=0){
         $(window).bind("mousemove",function(e){
         var x = e.pageX-offx;
         var y = e.pageY-offy;
@@ -38,6 +54,9 @@ $('#cvs').mousedown(function(e){
         for(var i=0;i<links.length;i++){
           links[i].draw();
         }
+        for(var i=0;i<highlights.length;i++){
+          highlights[i].draw();
+        }
     });
   }
   $(window).bind('mouseup',function() {
@@ -46,10 +65,13 @@ $('#cvs').mousedown(function(e){
       oc.clearRect(0,0,1200,800);
       c.clearRect(0,0,1200,800);
       for(var i=0;i<elems;i++){
-          boxes[i].draw();
+        boxes[i].draw();
       }
       for(var i=0;i<links.length;i++){
-          links[i].draw();
+        links[i].draw();
+      }
+      for(var i=0;i<highlights.length;i++){
+        highlights[i].draw();
       }
   });
 });
