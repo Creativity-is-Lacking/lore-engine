@@ -24,7 +24,11 @@ $('#cvs').mousedown(function(e){
   lastY = y;
   if(mode == 'link') {
     if(active>=0){
-      let h = new uiBox(boxes[active].id,boxes[active].x-10,boxes[active].y-10,boxes[active].w+5,boxes[active].h+5,color);
+      let newColor = hexToRgb(boxes[active].color);
+      newColor.r = (11*newColor.r)/10;
+      newColor.g = (11*newColor.g)/10;
+      newColor.b = (11*newColor.b)/10;
+      let h = new uiBox(boxes[active].id,boxes[active].x-10,boxes[active].y-10,boxes[active].w+5,boxes[active].h+5,rgbToHex(newColor.r,newColor.g,newColor.b));
       h.draw();
       highlights.push(h);
       if(highlights.length>=2){
@@ -149,4 +153,22 @@ function linkLine(id, box1, box2, color){
     oc.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
     oc.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
   }
+}
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
 }
