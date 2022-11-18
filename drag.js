@@ -115,16 +115,16 @@ function linkLine(id, box1, box2, color){
     var endPointY = box2.y + (box2.h/2);
     var midX = (startPointX + endPointX)/2;
     var midY = (startPointY + endPointY)/2;
-    c.bezierCurveTo(startPointX,startPointY,(startPointX+(midX/2))/2,((0.5*startPointY)+(midY/2))/2,midX,midY);
+    c.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,midX,midY);
     c.bezierCurveTo(midX,midY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
     //double bezier idea: curve to (dx/2,dy/2) with cp @ (startx - dx/4,starty - dy/4),  curve from (dx/2,dy/2) to (finalx,finaly) with cp @ (startx + dx/4,starty + dy/4)
-    oc.bezierCurveTo(startPointX,startPointY,(startPointX+(midX/2))/2,((0.5*startPointY)+(midY/2))/2,midX,midY);
+    oc.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,midX,midY);
     oc.bezierCurveTo(midX,midY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
     c.stroke();
     oc.stroke();
-    c.fillRect((startPointX+(midX/2))/2-5,((0.5*startPointY)+(midY/2))/2-5,10,10);
+    c.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
     c.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
-    oc.fillRect((startPointX+(midX/2))/2-5,((0.5*startPointY)+(midY/2))/2-5,10,10);
+    oc.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
     oc.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
   }
 }
