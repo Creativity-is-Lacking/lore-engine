@@ -114,7 +114,7 @@ function linkLine(id, box1, box2, color){
     var endPointX = box2.x;
     var endPointY = box2.y + (box2.h/2);
     var midX = (startPointX + endPointX)/2;
-    var midY (startPointY + endPointY)/2;
+    var midY = (startPointY + endPointY)/2;
     c.bezierCurveTo(startPointX,startPointY,startPointX+(midX/2),startPointY+(midY/2),midX,midY);
     c.bezierCurveTo(midX,midY,startPointX+((3*midX)/2),startPointY+((3*midY)/2),endPointX,endPointY);
     //double bezier idea: curve to (dx/2,dy/2) with cp @ (startx - dx/4,starty - dy/4),  curve from (dx/2,dy/2) to (finalx,finaly) with cp @ (startx + dx/4,starty + dy/4)
