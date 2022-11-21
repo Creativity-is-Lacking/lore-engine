@@ -25,9 +25,9 @@ $('#cvs').mousedown(function(e){
   if(mode == 'link') {
     if(active>=0){
       let newColor = hexToRgb(standardize_color(boxes[active].color));
-      newColor.r = newColor.r*1.1;
-      newColor.g = newColor.g*1.1;
-      newColor.b = newColor.b*1.1;
+      newColor.r = newColor.r*1.2;
+      newColor.g = newColor.g*1.2;
+      newColor.b = newColor.b*1.2;
       let h = new uiBox(boxes[active].id,boxes[active].x-5,boxes[active].y-5,boxes[active].w+5,boxes[active].h+5,rgbToHex(newColor.r,newColor.g,newColor.b),boxes[active]);
       h.draw();
       for(var i=0;i<elems;i++){
