@@ -28,17 +28,17 @@ $('#cvs').mousedown(function(e){
       newColor.r = (11*newColor.r)/10;
       newColor.g = (11*newColor.g)/10;
       newColor.b = (11*newColor.b)/10;
-      let h = new uiBox(boxes[active].id,boxes[active].x-5,boxes[active].y-5,boxes[active].w+5,boxes[active].h+5,rgbToHex(newColor.r,newColor.g,newColor.b));
+      let h = new uiBox(boxes[active].id,boxes[active].x-5,boxes[active].y-5,boxes[active].w+5,boxes[active].h+5,rgbToHex(newColor.r,newColor.g,newColor.b),boxes[active]);
       h.draw();
       for(var i=0;i<elems;i++){
           boxes[i].draw();
         }
       highlights.push(h);
       if(highlights.length>=2){
-        let l = new linkLine(highlights.length, highlights[0], highlights[1], '#ffffff')
+        let l = new linkLine(links.length, highlights[0].parent, highlights[1].parent, '#ffffff')
         l.draw();
         links.push(l);
-        for(var i=0;i<highlights.length;i++){
+        for(var i=0;i<=highlights.length;i++){
           highlights.pop();
         }
       }
@@ -92,11 +92,12 @@ function getID(x,y){
   else return -1;
 }
 
-function uiBox(id,x,y,w,h,color){
+function uiBox(id,x,y,w,h,color,parent=null){
   this.x = x;
   this.y = y;
   this.w = w;
   this.h = h;
+  this.parent = parent;
   this.color = color;
   this.id = id;
   this.draw = function(){
