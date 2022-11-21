@@ -28,8 +28,11 @@ $('#cvs').mousedown(function(e){
       newColor.r = (11*newColor.r)/10;
       newColor.g = (11*newColor.g)/10;
       newColor.b = (11*newColor.b)/10;
-      let h = new uiBox(boxes[active].id,boxes[active].x-10,boxes[active].y-10,boxes[active].w+5,boxes[active].h+5,rgbToHex(newColor.r,newColor.g,newColor.b));
+      let h = new uiBox(boxes[active].id,boxes[active].x-5,boxes[active].y-5,boxes[active].w+5,boxes[active].h+5,rgbToHex(newColor.r,newColor.g,newColor.b));
       h.draw();
+      for(var i=0;i<elems;i++){
+          boxes[i].draw();
+        }
       highlights.push(h);
       if(highlights.length>=2){
         let l = new linkLine(highlights.length, highlights[0], highlights[1], '#ffffff')
@@ -52,14 +55,14 @@ $('#cvs').mousedown(function(e){
         lastY = y;
         oc.clearRect(0,0,1200,800);
         c.clearRect(0,0,1200,800);
+        for(var i=0;i<highlights.length;i++){
+          highlights[i].draw();
+        }
         for(var i=0;i<elems;i++){
           boxes[i].draw();
         }
         for(var i=0;i<links.length;i++){
           links[i].draw();
-        }
-        for(var i=0;i<highlights.length;i++){
-          highlights[i].draw();
         }
     });
   }
@@ -68,14 +71,14 @@ $('#cvs').mousedown(function(e){
       active = -1;
       oc.clearRect(0,0,1200,800);
       c.clearRect(0,0,1200,800);
+      for(var i=0;i<highlights.length;i++){
+        highlights[i].draw();
+      }
       for(var i=0;i<elems;i++){
         boxes[i].draw();
       }
       for(var i=0;i<links.length;i++){
         links[i].draw();
-      }
-      for(var i=0;i<highlights.length;i++){
-        highlights[i].draw();
       }
   });
 });
