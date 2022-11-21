@@ -24,7 +24,7 @@ $('#cvs').mousedown(function(e){
   lastY = y;
   if(mode == 'link') {
     if(active>=0){
-      let newColor = hexToRgb(boxes[active].color);
+      let newColor = hexToRgb(standardize_color(boxes[active].color));
       newColor.r = (11*newColor.r)/10;
       newColor.g = (11*newColor.g)/10;
       newColor.b = (11*newColor.b)/10;
@@ -162,6 +162,12 @@ function componentToHex(c) {
 
 function rgbToHex(r, g, b) {
   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function standardize_color(str){
+    let tempCan = document.createElement('canvas').getContext('2d');
+    tempCan.fillStyle = str;
+    return tempCan.fillStyle;
 }
 
 function hexToRgb(hex) {
