@@ -1,8 +1,10 @@
-var button = document.getElementById("add");
-button.onclick = function(){
-  boxes.push(new uiBox(elems,650,450,210,160,"#329ea8"));
-  elems++;
-  for(var i=0;i<elems;i++){
-    boxes[i].draw();
-  }
-};
+var move = document.getElementById("move");
+var link = document.getElementById("link");
+var justify = document.getElementById("justify");
+var order = document.getElementById("order");
+
+move.onclick = function() {mode=''}
+link.onclick = function() {mode='link'}
+justify.onclick = function() {mode='justify'}
+order.onclick = function() {mode='order'} //will modify with modal to determine what direction to order
+//to add: offset(?), edit ...
