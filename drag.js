@@ -28,7 +28,7 @@ $('#cvs').mousedown(function(e){
       newColor.r = newColor.r*1.5;
       newColor.g = newColor.g*1.5;
       newColor.b = newColor.b*1.5;
-      let h = new uiBox(boxes[active].id,boxes[active].x-5,boxes[active].y-5,boxes[active].w+5,boxes[active].h+5,rgbToHex(newColor.r,newColor.g,newColor.b),boxes[active]);
+      let h = new uiBox(boxes[active].id,boxes[active].x-5,boxes[active].y-5,boxes[active].w+10,boxes[active].h+10,rgbToHex(newColor.r,newColor.g,newColor.b),boxes[active]);
       h.draw();
       for(var i=0;i<elems;i++){
           boxes[i].draw();
