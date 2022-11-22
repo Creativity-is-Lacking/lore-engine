@@ -156,6 +156,28 @@ function linkLine(id, box1, box2, color){
     c.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
     oc.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
     oc.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
+    c.strokeStyle = '#ff0000';
+    c.beginPath();
+    oc.beginPath();
+    c.moveTo(startPointX,startPointY);
+    oc.moveTo(startPointX,startPointY);
+    c.lineTo(endPointX,endPointY);
+    oc.lineTo(endPointX, endPointY);
+    c.stroke();
+    oc.stroke();
+    c.strokeStyle = '#00ff00';
+    c.beginPath();
+    oc.beginPath();
+    c.moveTo(startPointX,startPointY);
+    oc.moveTo(startPointX,startPointY);
+    c.lineTo((startPointX+midX)/2,((0.5*startPointY)+midY)/2);
+    oc.lineTo((startPointX+midX)/2,((0.5*startPointY)+midY)/2);
+    c.lineTo((midX+endPointX)/2,(midY+(1.5*endPointY))/2);
+    oc.lineTo((midX+endPointX)/2,(midY+(1.5*endPointY))/2);
+    c.lineTo(endPointX,endPointY);
+    oc.lineTo(endPointX, endPointY);
+    c.stroke();
+    oc.stroke();
   }
 }
 
