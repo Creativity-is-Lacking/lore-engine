@@ -150,6 +150,7 @@ function linkLine(id, box1, box2, color){
     //double bezier idea: curve to (dx/2,dy/2) with cp @ (startx - dx/4,starty - dy/4),  curve from (dx/2,dy/2) to (finalx,finaly) with cp @ (startx + dx/4,starty + dy/4)
     oc.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,midX,midY);
     oc.bezierCurveTo(midX,midY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
+    //corrected midpoint x: (0.25*startPointY*startPointX^2-0.375*endPointY*startPointX^2+1.25*startPointY*endPointX^2+1.125*endPointY*endPointX^2-0.5*startPointY*startPointX*endPointX+0.25*endPointY*startPointX*endPointX+(-startPointY*startPointX^2-startPointY*endPointX^2-endPointY*startPointX^2-endPointY*endPointX^2)/2)/((startPointY+1.5*endPointY)(-startPointX+endPointX))
     c.stroke();
     oc.stroke();
     c.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
