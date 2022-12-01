@@ -139,25 +139,23 @@ function linkLine(id, box1, box2, color){
     oc.beginPath();
     c.moveTo(box1.x + box1.w,box1.y + (box1.h/2));
     oc.moveTo(box1.x + box1.w,box1.y + (box1.h/2));
-    var startPointX = box1.x + box1.w;
-    var startPointY = box1.y + (box1.h/2);
-    var endPointX = box2.x;
-    var endPointY = box2.y + (box2.h/2);
-    var midX = (startPointX + endPointX)/2;
-    var midY = (startPointY + endPointY)/2;
-    c.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,midX,midY);
-    c.bezierCurveTo(midX,midY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
+    let startPointX = box1.x + box1.w;
+    let startPointY = box1.y + (box1.h/2);
+    let endPointX = box2.x;
+    let endPointY = box2.y + (box2.h/2);
+    let midX = (startPointX + endPointX)/2;
+    let midY = (startPointY + endPointY)/2;
+    let crossPointX = (0.25*startPointY*startPointX**2-0.375*endPointY*startPointX**2+1.25*startPointY*endPointX**2+1.125*endPointY*endPointX**2-0.5*startPointY*startPointX*endPointX+0.25*endPointY*startPointX*endPointX+(-startPointY*startPointX**2-startPointY*endPointX**2-endPointY*startPointX**2-endPointY*endPointX**2)/2)/((startPointY+1.5*endPointY)*(-startPointX+endPointX));
+    let crossPointY = (0.5*startPointY**(2)*startPointX+3.25*endPointY*startPointY*startPointX+1.25*endPointY**(2)*startPointX-0.5*startPointY**(2)*endPointX-3.25*endPointY*startPointY*endPointX-1.25*endPointY**(2)*endPointX)/((2*startPointY+3*endPointY)*(startPointX-endPointX));
+    c.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,crossPointX,crossPointY);
+    c.bezierCurveTo(crossPointX,crossPointY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
     //double bezier idea: curve to (dx/2,dy/2) with cp @ (startx - dx/4,starty - dy/4),  curve from (dx/2,dy/2) to (finalx,finaly) with cp @ (startx + dx/4,starty + dy/4)
     oc.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,midX,midY);
     oc.bezierCurveTo(midX,midY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
     //corrected midpoint x: (0.25*startPointY*startPointX**2-0.375*endPointY*startPointX**2+1.25*startPointY*endPointX**2+1.125*endPointY*endPointX**2-0.5*startPointY*startPointX*endPointX+0.25*endPointY*startPointX*endPointX+(-startPointY*startPointX**2-startPointY*endPointX**2-endPointY*startPointX**2-endPointY*endPointX**2)/2)/((startPointY+1.5*endPointY)(-startPointX+endPointX))
     //corrected midpoint y: (0.5*startPointY**(2)*startPointX+3.25*endPointY*startPointY*startPointX+1.25*endPointY**(2)*startPointX-0.5*startPointY**(2)*endPointX-3.25*endPointY*startPointY*endPointX-1.25*endPointY**(2)*endPointX)/((2*startPointY+3*endPointY)*(startPointX-endPointX))
-    let testX = (0.25*startPointY*startPointX**2-0.375*endPointY*startPointX**2+1.25*startPointY*endPointX**2+1.125*endPointY*endPointX**2-0.5*startPointY*startPointX*endPointX+0.25*endPointY*startPointX*endPointX+(-startPointY*startPointX**2-startPointY*endPointX**2-endPointY*startPointX**2-endPointY*endPointX**2)/2)/((startPointY+1.5*endPointY)*(-startPointX+endPointX));
-    let testY = (0.5*startPointY**(2)*startPointX+3.25*endPointY*startPointY*startPointX+1.25*endPointY**(2)*startPointX-0.5*startPointY**(2)*endPointX-3.25*endPointY*startPointY*endPointX-1.25*endPointY**(2)*endPointX)/((2*startPointY+3*endPointY)*(startPointX-endPointX));
     c.stroke();
     oc.stroke();
-    c.fillRect(testX-5,testY-5,10,10);
-    oc.fillRect(testX-5,testY-5,10,10);
     c.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
     c.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
     oc.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
