@@ -182,6 +182,8 @@ function linkLine(id, box1, box2, color){
     oc.lineTo(endPointX, endPointY);
     c.stroke();
     oc.stroke();
+    c.fillRect(crossPointX-10,crossPointY-10,10,10);
+    oc.fillRect(crossPointX-10,crossPointY-10,10,10);
   }
 }
 
