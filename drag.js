@@ -145,8 +145,7 @@ function linkLine(id, box1, box2, color){
     let endPointY = box2.y + (box2.h/2);
     let midX = (startPointX + endPointX)/2;
     let midY = (startPointY + endPointY)/2;
-    let crossPointX = (0.25*startPointY*startPointX**2-0.375*endPointY*startPointX**2+1.25*startPointY*endPointX**2+1.125*endPointY*endPointX**2-0.5*startPointY*startPointX*endPointX+0.25*endPointY*startPointX*endPointX+(-startPointY*startPointX**2-startPointY*endPointX**2-endPointY*startPointX**2-endPointY*endPointX**2)/2)/((startPointY+1.5*endPointY)*(-startPointX+endPointX));
-    let crossPointY = (0.5*startPointY**(2)*startPointX+3.25*endPointY*startPointY*startPointX+1.25*endPointY**(2)*startPointX-0.5*startPointY**(2)*endPointX-3.25*endPointY*startPointY*endPointX-1.25*endPointY**(2)*endPointX)/((2*startPointY+3*endPointY)*(startPointX-endPointX));
+    let crossPointX, crossPointY = intersect(startPointX, startPointY, endPointX, endPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,(midX+endPointX)/2,(midY+(1.5*endPointY))/2);
     c.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,crossPointX,crossPointY);
     c.bezierCurveTo(crossPointX,crossPointY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
     //double bezier idea: curve to (dx/2,dy/2) with cp @ (startx - dx/4,starty - dy/4),  curve from (dx/2,dy/2) to (finalx,finaly) with cp @ (startx + dx/4,starty + dy/4)
@@ -209,4 +208,22 @@ function hexToRgb(hex) {
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
   } : null;
+}
+
+function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
+	if ((x1 === x2 && y1 === y2) || (x3 === x4 && y3 === y4)) {
+		return false
+	}
+	denominator = ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1))
+	if (denominator === 0) {
+		return false
+	}
+	let ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denominator
+	let ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denominator
+	if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
+		return false
+	}
+	let x = x1 + ua * (x2 - x1)
+	let y = y1 + ua * (y2 - y1)
+	return {x, y}
 }
