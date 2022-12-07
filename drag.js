@@ -156,7 +156,7 @@ function linkLine(id, box1, box2, color){
     //corrected midpoint y: (0.5*startPointY**(2)*startPointX+3.25*endPointY*startPointY*startPointX+1.25*endPointY**(2)*startPointX-0.5*startPointY**(2)*endPointX-3.25*endPointY*startPointY*endPointX-1.25*endPointY**(2)*endPointX)/((2*startPointY+3*endPointY)*(startPointX-endPointX))
     c.stroke();
     oc.stroke();
-    c.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
+    /*c.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
     c.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
     oc.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
     oc.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
@@ -183,7 +183,7 @@ function linkLine(id, box1, box2, color){
     c.stroke();
     oc.stroke();
     c.fillRect(crossPointX-10,crossPointY-10,10,10);
-    oc.fillRect(crossPointX-10,crossPointY-10,10,10);
+    oc.fillRect(crossPointX-10,crossPointY-10,10,10);*/
   }
 }
 
