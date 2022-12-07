@@ -145,13 +145,24 @@ function linkLine(id, box1, box2, color){
     let endPointY = box2.y + (box2.h/2);
     let midX = (startPointX + endPointX)/2;
     let midY = (startPointY + endPointY)/2;
-    let crossPointX = intersect(startPointX, startPointY, endPointX, endPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,(midX+endPointX)/2,(midY+(1.5*endPointY))/2).x;
-    let crossPointY = intersect(startPointX, startPointY, endPointX, endPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,(midX+endPointX)/2,(midY+(1.5*endPointY))/2).y;
-    //add quarterpoints and change the control points to be a constant offset from quarter points
-    c.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,crossPointX,crossPointY);
-    c.bezierCurveTo(crossPointX,crossPointY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
-    oc.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,midX,midY);
-    oc.bezierCurveTo(midX,midY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
+    let RquarterX = (midX + endPointX)/2;
+    let RquarterY = (midY + endPointY)/2;
+    let LquarterX = (startPointX + midX)/2;
+    let LquarterY = (startPointY + midY)/2;
+    if(startPointY >= endPointY) {
+       LquarterY += 30;
+       RquarterY -= 30;
+    }
+    if(startPointY < endPointY) {
+       LquarterY -= 30;
+       RquarterY += 30;
+    }
+    let crossPointX = intersect(startPointX, startPointY, endPointX, endPointY,LquarterX,LquarterY,RquarterX,RquarterY).x;
+    let crossPointY = intersect(startPointX, startPointY, endPointX, endPointY,LquarterX,LquarterY,RquarterX,RquarterY).y;
+    c.bezierCurveTo(startPointX,startPointY,LquarterX,LquarterY,crossPointX,crossPointY);
+    c.bezierCurveTo(crossPointX,crossPointY,RquarterX,RquarterY,endPointX,endPointY);
+    oc.bezierCurveTo(startPointX,startPointY,LquarterX,LquarterY,crossPointX,crossPointY);
+    oc.bezierCurveTo(crossPointX,crossPointY,RquarterX,RquarterY,endPointX,endPointY);
     c.stroke();
     oc.stroke();
   }
