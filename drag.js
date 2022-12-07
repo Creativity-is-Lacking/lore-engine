@@ -147,43 +147,13 @@ function linkLine(id, box1, box2, color){
     let midY = (startPointY + endPointY)/2;
     let crossPointX = intersect(startPointX, startPointY, endPointX, endPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,(midX+endPointX)/2,(midY+(1.5*endPointY))/2).x;
     let crossPointY = intersect(startPointX, startPointY, endPointX, endPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,(midX+endPointX)/2,(midY+(1.5*endPointY))/2).y;
+    //add quarterpoints and change the control points to be a constant offset from quarter points
     c.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,crossPointX,crossPointY);
     c.bezierCurveTo(crossPointX,crossPointY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
-    //double bezier idea: curve to (dx/2,dy/2) with cp @ (startx - dx/4,starty - dy/4),  curve from (dx/2,dy/2) to (finalx,finaly) with cp @ (startx + dx/4,starty + dy/4)
     oc.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,midX,midY);
     oc.bezierCurveTo(midX,midY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
-    //corrected midpoint x: (0.25*startPointY*startPointX**2-0.375*endPointY*startPointX**2+1.25*startPointY*endPointX**2+1.125*endPointY*endPointX**2-0.5*startPointY*startPointX*endPointX+0.25*endPointY*startPointX*endPointX+(-startPointY*startPointX**2-startPointY*endPointX**2-endPointY*startPointX**2-endPointY*endPointX**2)/2)/((startPointY+1.5*endPointY)(-startPointX+endPointX))
-    //corrected midpoint y: (0.5*startPointY**(2)*startPointX+3.25*endPointY*startPointY*startPointX+1.25*endPointY**(2)*startPointX-0.5*startPointY**(2)*endPointX-3.25*endPointY*startPointY*endPointX-1.25*endPointY**(2)*endPointX)/((2*startPointY+3*endPointY)*(startPointX-endPointX))
     c.stroke();
     oc.stroke();
-    /*c.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
-    c.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
-    oc.fillRect((startPointX+midX)/2-5,((0.5*startPointY)+midY)/2-5,10,10);
-    oc.fillRect((midX+endPointX)/2-5,(midY+(1.5*endPointY))/2-5,10,10);
-    c.strokeStyle = '#ff0000';
-    c.beginPath();
-    oc.beginPath();
-    c.moveTo(startPointX,startPointY);
-    oc.moveTo(startPointX,startPointY);
-    c.lineTo(endPointX,endPointY);
-    oc.lineTo(endPointX, endPointY);
-    c.stroke();
-    oc.stroke();
-    c.strokeStyle = '#00ff00';
-    c.beginPath();
-    oc.beginPath();
-    c.moveTo(startPointX,startPointY);
-    oc.moveTo(startPointX,startPointY);
-    c.lineTo((startPointX+midX)/2,((0.5*startPointY)+midY)/2);
-    oc.lineTo((startPointX+midX)/2,((0.5*startPointY)+midY)/2);
-    c.lineTo((midX+endPointX)/2,(midY+(1.5*endPointY))/2);
-    oc.lineTo((midX+endPointX)/2,(midY+(1.5*endPointY))/2);
-    c.lineTo(endPointX,endPointY);
-    oc.lineTo(endPointX, endPointY);
-    c.stroke();
-    oc.stroke();
-    c.fillRect(crossPointX-10,crossPointY-10,10,10);
-    oc.fillRect(crossPointX-10,crossPointY-10,10,10);*/
   }
 }
 
