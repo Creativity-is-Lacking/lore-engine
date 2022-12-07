@@ -43,43 +43,24 @@ $('#cvs').mousedown(function(e){
         }
       }
     }
-  } else if(active>=0){
-        $(window).bind("mousemove",function(e){
-        var x = e.pageX-offx;
-        var y = e.pageY-offy;
-        if(active>=0){
-          boxes[active].x+=x-lastX;
-          boxes[active].y+=y-lastY;
-        }
-        lastX = x;
-        lastY = y;
-        oc.clearRect(0,0,1200,800);
-        c.clearRect(0,0,1200,800);
-        for(var i=0;i<highlights.length;i++){
-          highlights[i].draw();
-        }
-        for(var i=0;i<elems;i++){
-          boxes[i].draw();
-        }
-        for(var i=0;i<links.length;i++){
-          links[i].draw();
-        }
+  }
+  if(active>=0){
+    $(window).bind("mousemove",function(e){
+      var x = e.pageX-offx;
+      var y = e.pageY-offy;
+      if(active>=0){
+        boxes[active].x+=x-lastX;
+        boxes[active].y+=y-lastY;
+      }
+      lastX = x;
+      lastY = y;
+      renderObjs();
     });
   }
   $(window).bind('mouseup',function() {
       $(this).unbind('mousemove');
       active = -1;
-      oc.clearRect(0,0,1200,800);
-      c.clearRect(0,0,1200,800);
-      for(var i=0;i<highlights.length;i++){
-        highlights[i].draw();
-      }
-      for(var i=0;i<elems;i++){
-        boxes[i].draw();
-      }
-      for(var i=0;i<links.length;i++){
-        links[i].draw();
-      }
+      renderObjs();
   });
 });
 });
@@ -151,12 +132,12 @@ function linkLine(id, box1, box2, color){
     let LquarterY = (startPointY + midY)/2;
     let deltaY = (endPointY - startPointY);
     if(startPointY >= endPointY) {
-      LquarterY += (30 + 0.1*deltaY);
-      RquarterY -= (30 + 0.1*deltaY);
+      LquarterY += (30 - 0.2*deltaY);
+      RquarterY -= (30 - 0.2*deltaY);
     }
     if(startPointY < endPointY) {
-      LquarterY -= (30 + 0.1*deltaY);
-      RquarterY += (30 + 0.1*deltaY);
+      LquarterY -= (30 + 0.2*deltaY);
+      RquarterY += (30 + 0.2*deltaY);
     }
     let crossPointX = intersect(startPointX, startPointY, endPointX, endPointY,LquarterX,LquarterY,RquarterX,RquarterY).x;
     let crossPointY = intersect(startPointX, startPointY, endPointX, endPointY,LquarterX,LquarterY,RquarterX,RquarterY).y;
@@ -166,6 +147,20 @@ function linkLine(id, box1, box2, color){
     oc.bezierCurveTo(crossPointX,crossPointY,RquarterX,RquarterY,endPointX,endPointY);
     c.stroke();
     oc.stroke();
+  }
+}
+
+function renderObjs() {
+  oc.clearRect(0,0,1200,800);
+  c.clearRect(0,0,1200,800);
+  for(var i=0;i<highlights.length;i++){
+    highlights[i].draw();
+  }
+  for(var i=0;i<elems;i++){
+    boxes[i].draw();
+  }
+  for(var i=0;i<links.length;i++){
+    links[i].draw();
   }
 }
 
