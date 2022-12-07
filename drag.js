@@ -151,12 +151,12 @@ function linkLine(id, box1, box2, color){
     let LquarterY = (startPointY + midY)/2;
     let deltaY = (endPointY - startPointY);
     if(startPointY >= endPointY) {
-      LquarterY += (30 + deltaY);
-      RquarterY -= (30 + deltaY);
+      LquarterY += (30 + 0.1*deltaY);
+      RquarterY -= (30 + 0.1*deltaY);
     }
     if(startPointY < endPointY) {
-      LquarterY -= (30 + deltaY);
-      RquarterY += (30 + deltaY);
+      LquarterY -= (30 + 0.1*deltaY);
+      RquarterY += (30 + 0.1*deltaY);
     }
     let crossPointX = intersect(startPointX, startPointY, endPointX, endPointY,LquarterX,LquarterY,RquarterX,RquarterY).x;
     let crossPointY = intersect(startPointX, startPointY, endPointX, endPointY,LquarterX,LquarterY,RquarterX,RquarterY).y;
