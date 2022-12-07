@@ -145,7 +145,8 @@ function linkLine(id, box1, box2, color){
     let endPointY = box2.y + (box2.h/2);
     let midX = (startPointX + endPointX)/2;
     let midY = (startPointY + endPointY)/2;
-    let crossPointX, crossPointY = intersect(startPointX, startPointY, endPointX, endPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,(midX+endPointX)/2,(midY+(1.5*endPointY))/2);
+    let crossPointX = intersect(startPointX, startPointY, endPointX, endPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,(midX+endPointX)/2,(midY+(1.5*endPointY))/2).x;
+    let crossPointY = intersect(startPointX, startPointY, endPointX, endPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,(midX+endPointX)/2,(midY+(1.5*endPointY))/2).y;
     c.bezierCurveTo(startPointX,startPointY,(startPointX+midX)/2,((0.5*startPointY)+midY)/2,crossPointX,crossPointY);
     c.bezierCurveTo(crossPointX,crossPointY,(midX+endPointX)/2,(midY+(1.5*endPointY))/2,endPointX,endPointY);
     //double bezier idea: curve to (dx/2,dy/2) with cp @ (startx - dx/4,starty - dy/4),  curve from (dx/2,dy/2) to (finalx,finaly) with cp @ (startx + dx/4,starty + dy/4)
