@@ -22,25 +22,23 @@ $('#cvs').mousedown(function(e){
   active = getID(x,y);
   lastX = x;
   lastY = y;
-  if(mode == 'link') {
-    if(active>=0){
-      let newColor = hexToRgb(standardize_color(boxes[active].color));
-      newColor.r = newColor.r*1.5;
-      newColor.g = newColor.g*1.5;
-      newColor.b = newColor.b*1.5;
-      let h = new uiBox(boxes[active].id,boxes[active].x-5,boxes[active].y-5,boxes[active].w+10,boxes[active].h+10,rgbToHex(newColor.r,newColor.g,newColor.b),boxes[active]);
-      h.draw();
-      for(var i=0;i<elems;i++){
-          boxes[i].draw();
-        }
-      highlights.push(h);
-      if(highlights.length>=2){
-        let l = new linkLine(links.length, highlights[0].parent, highlights[1].parent, '#ffffff')
-        l.draw();
-        links.push(l);
-        for(var i=0;i<=highlights.length;i++){
-          highlights.pop();
-        }
+  if(mode == 'link' && active>=0) {
+    highlightObj(active);
+    if(highlights.length>=2){
+      let l = new linkLine(links.length, highlights[0].parent, highlights[1].parent, '#ffffff')
+      l.draw();
+      links.push(l);
+      for(var i=0;i<=highlights.length;i++){
+        highlights.pop();
+      }
+    }
+  }
+  if(mode == 'Halign' && active>=0){
+    highlightObj(active);
+    if(highlights.length>=2){
+      highlights[0].parent.x = highlights[1].parent.x;
+      for(var i=0;i<=highlights.length;i++){
+        highlights.pop();
       }
     }
   }
@@ -148,6 +146,19 @@ function linkLine(id, box1, box2, color){
     c.stroke();
     oc.stroke();
   }
+}
+
+function highlightObj(index) {
+  let newColor = hexToRgb(standardize_color(boxes[index].color));
+  newColor.r = newColor.r*1.5;
+  newColor.g = newColor.g*1.5;
+  newColor.b = newColor.b*1.5;
+  let h = new uiBox(boxes[index].id,boxes[index].x-5,boxes[index].y-5,boxes[index].w+10,boxes[index].h+10,rgbToHex(newColor.r,newColor.g,newColor.b),boxes[index]);
+  h.draw();
+  for(var i=0;i<elems;i++){
+    boxes[i].draw();
+  }
+  highlights.push(h);
 }
 
 function renderObjs() {
