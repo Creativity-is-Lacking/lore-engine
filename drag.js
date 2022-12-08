@@ -51,6 +51,17 @@ $('#cvs').mousedown(function(e){
       }
     }
   }
+  if(mode == 'Forder' && active>=0){
+    highlightObj(active);
+    if(highlights.length>=1){
+      let tempObj = boxes[highlights[0].parent.id-1];
+      boxes[highlights[0].parent.id-1] = boxes[highlights[0].parent.id]
+      boxes[highlights[0].parent.id] = tempObj;
+      for(var i=0;i<=highlights.length;i++){
+        highlights.pop();
+      }
+    }
+  }
   if(active>=0){
     $(window).bind("mousemove",function(e){
       var x = e.pageX-offx;
