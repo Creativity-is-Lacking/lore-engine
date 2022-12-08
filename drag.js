@@ -42,6 +42,15 @@ $('#cvs').mousedown(function(e){
       }
     }
   }
+  if(mode == 'Valign' && active>=0){
+    highlightObj(active);
+    if(highlights.length>=2){
+      highlights[0].parent.y = highlights[1].parent.y;
+      for(var i=0;i<=highlights.length;i++){
+        highlights.pop();
+      }
+    }
+  }
   if(active>=0){
     $(window).bind("mousemove",function(e){
       var x = e.pageX-offx;
