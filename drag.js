@@ -16,8 +16,10 @@ var links = new Array();
 var highlights = new Array();
 
 addEventListener("resize", (event) => {
-  canvas.height = window.innerHeight;
+  canvas.height = window.innerHeight - document.getElementsByClassName("nav-ul")[0].clientHeight;
   canvas.width = window.innerWidth;
+  ocan.height = canvas.height;
+  ocan.width = canvas.width;
   renderObjs();
 });
 
