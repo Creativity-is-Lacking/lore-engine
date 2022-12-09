@@ -17,6 +17,7 @@ var highlights = new Array();
 
 addEventListener("resize", (event) => {
   canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
   renderObjs();
 });
 
