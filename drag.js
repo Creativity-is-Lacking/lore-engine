@@ -190,8 +190,8 @@ function highlightObj(index) {
 }
 
 function renderObjs() {
-  oc.clearRect(0,0,1200,800);
-  c.clearRect(0,0,1200,800);
+  oc.clearRect(0,0,ocan.width,ocan.height);
+  c.clearRect(0,0,canvas.width,canvas.height);
   for(var i=0;i<highlights.length;i++){
     highlights[i].draw();
   }
