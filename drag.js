@@ -15,6 +15,11 @@ var boxes = new Array();
 var links = new Array();
 var highlights = new Array();
 
+addEventListener("resize", (event) => {
+  canvas.height = window.innerHeight;
+  renderObjs();
+});
+
 $(document).ready(function(){
 $('#cvs').mousedown(function(e){
   var x = e.pageX-offx;
