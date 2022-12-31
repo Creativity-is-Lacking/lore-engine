@@ -75,6 +75,10 @@ boxAdd.onclick = function() {
     boxes[i].draw();
   }
   Boxmodal.style.display = "none";
+  boxBlue.style.value = false;
+  boxMag.style.value = false;
+  boxMar.style.value = false;
+  boxGrey.style.value = false;
 }
 window.onclick = function(event) {
   if (event.target == Boxmodal) {
