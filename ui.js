@@ -11,6 +11,8 @@ var backward = document.getElementById("Border");
 
 move.onclick = function() {
   mode='';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -18,6 +20,8 @@ move.onclick = function() {
 }
 edit.onclick = function() {
   mode='edit';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -26,6 +30,8 @@ edit.onclick = function() {
 }
 link.onclick = function() {
   mode='link';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -33,6 +39,8 @@ link.onclick = function() {
 }
 lock.onclick = function() {
   mode='lock';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -41,6 +49,8 @@ lock.onclick = function() {
 }
 justify.onclick = function() {
   mode='justify';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -49,6 +59,8 @@ justify.onclick = function() {
 }
 Halign.onclick = function() {
   mode='Halign';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -56,6 +68,8 @@ Halign.onclick = function() {
 }
 Valign.onclick = function() {
   mode='Valign';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -63,6 +77,8 @@ Valign.onclick = function() {
 }
 order.onclick = function() {
   mode='order';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -71,6 +87,8 @@ order.onclick = function() {
 } 
 forward.onclick = function() {
   mode='Forder';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
@@ -78,6 +96,8 @@ forward.onclick = function() {
 }
 backward.onclick = function() {
   mode='Border';
+  highlights = [];
+  renderObjs();
   let len = document.getElementsByClassName("active").length;
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';

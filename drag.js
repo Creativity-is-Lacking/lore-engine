@@ -30,8 +30,10 @@ $('#cvs').mousedown(function(e){
   var x = e.pageX-offx;
   var y = e.pageY-offy;
   active = getID(x,y);
-  lastX = x;
-  lastY = y;
+  if(mode == ''){
+    lastX = x;
+    lastY = y;
+  }
   if(mode == 'link' && active>=0) {
     highlightObj(active);
     if(highlights.length>=2){
@@ -74,15 +76,17 @@ $('#cvs').mousedown(function(e){
   }
   if(active>=0){
     $(window).bind("mousemove",function(e){
-      var x = e.pageX-offx;
-      var y = e.pageY-offy;
-      if(active>=0){
-        boxes[active].x+=x-lastX;
-        boxes[active].y+=y-lastY;
+      if(mode == ''){
+        var x = e.pageX-offx;
+        var y = e.pageY-offy;
+        if(active>=0){
+          boxes[active].x+=x-lastX;
+          boxes[active].y+=y-lastY;
+        }
+        lastX = x;
+        lastY = y;
+        renderObjs();
       }
-      lastX = x;
-      lastY = y;
-      renderObjs();
     });
   }
   $(window).bind('mouseup',function() {
