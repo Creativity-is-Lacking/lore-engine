@@ -1,6 +1,8 @@
 var Boxmodal = document.getElementById("Boxmodal");
+var Editmodal = document.getElementById("Editmodal");
 var Boxbtn = document.getElementById("Boxbtn");
 var Boxspan = document.getElementsByClassName("close")[0];
+var Editspan = document.getElementsByClassName("close")[1];
 var useBoxDim = document.getElementById("useBoxDim");
 var boxDimCont = document.getElementById("boxDimCont");
 var useBoxSetColor = document.getElementById("useCustColor");
@@ -33,6 +35,9 @@ Boxbtn.onclick = function() {
 }
 Boxspan.onclick = function() {
   Boxmodal.style.display = "none";
+}
+Editspan.onclick = function() {
+  Editmodal.style.display = "none";
 }
 useBoxDim.onclick = function() {
   if(useBoxDim.checked)
@@ -83,5 +88,8 @@ boxAdd.onclick = function() {
 window.onclick = function(event) {
   if (event.target == Boxmodal) {
     Boxmodal.style.display = "none";
+  }
+  if (event.target == Editmodal) {
+    Editmodal.style.display = "none";
   }
 }

@@ -8,6 +8,7 @@ var Valign = document.getElementById("Valign");
 var order = document.getElementById("Porder");
 var forward = document.getElementById("Forder");
 var backward = document.getElementById("Border");
+var nop = document.getElementById("nop");
 
 move.onclick = function() {
   mode='';
@@ -102,4 +103,13 @@ backward.onclick = function() {
   for(var i = 0; i < len; i++)
     document.getElementsByClassName("active")[i].className = '';
   backward.className = 'active';
+}
+nop.onclick = function() {
+  mode='nop';
+  highlights = [];
+  renderObjs();
+  let len = document.getElementsByClassName("active").length;
+  for(var i = 0; i < len; i++)
+    document.getElementsByClassName("active")[i].className = '';
+  nop.className = 'active';
 }

@@ -30,6 +30,10 @@ $('#cvs').mousedown(function(e){
   var x = e.pageX-offx;
   var y = e.pageY-offy;
   active = getID(x,y);
+  if(boxes[active].locked) {
+    //create notif of locked statust
+    return;
+  }
   if(mode == ''){
     lastX = x;
     lastY = y;
@@ -43,6 +47,22 @@ $('#cvs').mousedown(function(e){
       for(var i=0;i<=highlights.length;i++){
         highlights.pop();
       }
+    }
+  }
+  if(mode == 'edit' && active >= 0){
+    highlightObj(active);
+    if(highlights.length>=1){
+      var editee = boxes[active];
+      document.getElementById('Editmodal').style.display = "block"
+      var field = document.getElementById('Editmodal').children[0].children[1];
+      if(editee.innerImage == null) {
+        console.log(field.lastChild)
+        const imgbtn = document.createElement("button");
+        field.insertBefore(imgbtn, field.lastElementChild);
+      }
+    }
+    for(var i=0;i<=highlights.length;i++){
+      highlights.pop();
     }
   }
   if(mode == 'Halign' && active>=0){
@@ -63,15 +83,43 @@ $('#cvs').mousedown(function(e){
       }
     }
   }
-  if(mode == 'Forder' && active>=0){
+  if(mode == 'Border' && active>=0){
     highlightObj(active);
     if(highlights.length>=1){
       let tempObj = boxes[highlights[0].parent.id-1];
-      boxes[highlights[0].parent.id-1] = boxes[highlights[0].parent.id]
-      boxes[highlights[0].parent.id] = tempObj;
+      if(tempObj != null) {
+        boxes[highlights[0].parent.id-1] = boxes[highlights[0].parent.id];
+        boxes[highlights[0].parent.id] = tempObj;
+        boxes[highlights[0].parent.id].id = highlights[0].parent.id;
+        boxes[highlights[0].parent.id-1].id = tempObj.id-1;
+      }
       for(var i=0;i<=highlights.length;i++){
         highlights.pop();
       }
+    }
+  }
+  if(mode == 'Forder' && active>=0){
+    highlightObj(active);
+    if(highlights.length>=1){
+      let tempObj = boxes[highlights[0].parent.id+1];
+      if(tempObj != null) {
+        boxes[highlights[0].parent.id+1] = boxes[highlights[0].parent.id];
+        boxes[highlights[0].parent.id] = tempObj;
+        boxes[highlights[0].parent.id].id = highlights[0].parent.id;
+        boxes[highlights[0].parent.id+1].id = tempObj.id+1;
+      }
+      for(var i=0;i<=highlights.length;i++){
+        highlights.pop();
+      }
+    }
+  }
+  if(mode == 'lock' && active >= 0) {
+    highlightObj(active);
+    if(highlights.length>=1){
+      boxes[active].locked = true;
+    }
+    for(var i=0;i<=highlights.length;i++){
+      highlights.pop();
     }
   }
   if(active>=0){
@@ -105,12 +153,15 @@ function getID(x,y){
   else return -1;
 }
 
-function uiBox(id,x,y,w,h,color,parent=null){
+function uiBox(id,x,y,w,h,color,parent=null,locked=false,innerImage=null,text=null){
   this.x = x;
   this.y = y;
   this.w = w;
   this.h = h;
   this.parent = parent;
+  this.locked = locked;
+  this.innerImage = innerImage;
+  this.text = text;
   this.color = color;
   this.id = id;
   this.draw = function(){
