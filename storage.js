@@ -1,12 +1,12 @@
 function loadFromServer(project_identifier, project_password) {
-    argon2.hash({ pass: project_identifier, salt: ${{ secrets.TRANSFER_SALT }} })
+    argon2.hash({ pass: project_identifier, salt: ''})
     .then(hashid => {
         hashid = hashid.hashHex;
-        argon2.hash({ pass: project_password, salt: ${{ secrets.TRANSFER_SALT }} })
+        argon2.hash({ pass: project_password, salt: ''})
         .then(hashpass => {
             hashpass = hashpass.hashHex;
             let request = new XMLHttpRequest();
-            request.open("post", 'https://' + ${{ secrets.SERVER_IP }} + '/', true);
+            request.open("post", 'https://0.0.0.0/', true);
             request.onreadystatechange = () => { // Call a function when the state changes.
                 if (!request.readyState === XMLHttpRequest.DONE){
                     return;

@@ -76,7 +76,17 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <div class="colFlex">
-            <p>Field area test</p>
+            <label for="edittype">Element type:</label>
+            <select id="edittype" style="width:10%">
+              <option value=1>Image</option>
+              <option value=2>Text</option>
+              <option value=3>Blank</option>
+            </select>
+            <p class="editimg">Submit image:</p>
+            <p class="edittxt">Enter text:</p>
+            <p class="editblank">No data</p>
+            <button class="editimg"></button>
+            <textarea id="edittext" class="edittxt"></textarea>
             <button id="EditConfirm">Confirm Edits</button>
           </div>
         </div>

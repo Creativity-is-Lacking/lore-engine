@@ -1,5 +1,6 @@
 var canvas = document.getElementById('cvs');
 var c = canvas.getContext('2d');
+c.font = "48px serif";
 var ocan = document.createElement("canvas");
 var oc = ocan.getContext('2d', {willReadFrequently: true});
 canvas.height = window.innerHeight - document.getElementsByClassName("nav-ul")[0].clientHeight;
@@ -12,10 +13,16 @@ var lastX = 0,lastY=0;
 var active = -1;
 var elems = 0;
 var mode = '';
+var etype = 0;
+var eactive = -1;
 
 var boxes = new Array();
 var links = new Array();
 var highlights = new Array();
+
+Array.from(document.getElementsByClassName("editimg")).forEach(element => {element.style.display = "none"});
+Array.from(document.getElementsByClassName("edittxt")).forEach(element => {element.style.display = "none"});
+Array.from(document.getElementsByClassName("editblank")).forEach(element => {element.style.display = "none"});
 
 addEventListener("resize", (event) => {
   canvas.height = window.innerHeight - document.getElementsByClassName("nav-ul")[0].clientHeight;
@@ -25,13 +32,55 @@ addEventListener("resize", (event) => {
   renderObjs();
 });
 
+document.getElementById("edittype").addEventListener("change", (event)=> {
+  etype = document.getElementById("edittype").value;
+  switch (etype) {
+    case "1":
+      Array.from(document.getElementsByClassName("editimg")).forEach(element => {element.style.display = "block"});
+      Array.from(document.getElementsByClassName("edittxt")).forEach(element => {element.style.display = "none"});
+      Array.from(document.getElementsByClassName("editblank")).forEach(element => {element.style.display = "none"});
+      break;
+    case "2":
+      Array.from(document.getElementsByClassName("editimg")).forEach(element => {element.style.display = "none"});
+      Array.from(document.getElementsByClassName("edittxt")).forEach(element => {element.style.display = "block"});
+      Array.from(document.getElementsByClassName("editblank")).forEach(element => {element.style.display = "none"});
+      break;
+    case "3":
+      Array.from(document.getElementsByClassName("editimg")).forEach(element => {element.style.display = "none"});
+      Array.from(document.getElementsByClassName("edittxt")).forEach(element => {element.style.display = "none"});
+      Array.from(document.getElementsByClassName("editblank")).forEach(element => {element.style.display = "block"});
+      break;
+    default:
+      console.log("default");
+      break;
+  }
+});
+
+document.getElementById("EditConfirm").addEventListener("click", (event) => {
+  switch (etype) {
+    case "1":
+      break;
+    case "2":
+      boxes[eactive].text = document.getElementById("edittext").value;
+      break;
+    case "3":
+      break;
+    default:
+      console.log("default");
+      break;
+  }
+  document.getElementById('Editmodal').style.display = "none";
+  document.getElementById("edittext").value = "";
+  renderObjs();
+});
+
 $(document).ready(function(){
 $('#cvs').mousedown(function(e){
   var x = e.pageX-offx;
   var y = e.pageY-offy;
   active = getID(x,y);
-  if(boxes[active].locked) {
-    //create notif of locked statust
+  if(active >= 0 && boxes[active].locked) {
+    //create notif of locked status
     return;
   }
   if(mode == ''){
@@ -52,14 +101,16 @@ $('#cvs').mousedown(function(e){
   if(mode == 'edit' && active >= 0){
     highlightObj(active);
     if(highlights.length>=1){
+      eactive = active;
+      document.getElementById("edittext").value = boxes[active].text;
       var editee = boxes[active];
-      document.getElementById('Editmodal').style.display = "block"
-      var field = document.getElementById('Editmodal').children[0].children[1];
-      if(editee.innerImage == null) {
-        console.log(field.lastChild)
-        const imgbtn = document.createElement("button");
-        field.insertBefore(imgbtn, field.lastElementChild);
-      }
+      if(editee.etype == "1")
+        Array.from(document.getElementsByClassName("editimg")).forEach(element => {element.style.display = "block"});
+      if(editee.etype == "2")
+        Array.from(document.getElementsByClassName("edittxt")).forEach(element => {element.style.display = "block"});
+      if(editee.etype == "3")
+        Array.from(document.getElementsByClassName("editblank")).forEach(element => {element.style.display = "block"});
+      document.getElementById('Editmodal').style.display = "block";
     }
     for(var i=0;i<=highlights.length;i++){
       highlights.pop();
@@ -153,15 +204,24 @@ function getID(x,y){
   else return -1;
 }
 
-function uiBox(id,x,y,w,h,color,parent=null,locked=false,innerImage=null,text=null){
+function uiBox(id,x,y,w,h,color,parent=null,locked=false,etype=null,text=null,innerImage=null){
   this.x = x;
   this.y = y;
   this.w = w;
   this.h = h;
   this.parent = parent;
   this.locked = locked;
-  this.innerImage = innerImage;
+  this.etype = etype;
   this.text = text;
+  this.innerImage = innerImage;
+  this.textElement = document.createElement("p");
+  this.textElement.style.color = "white";
+  this.textElement.style.zIndex = "1";
+  this.textElement.style.position = "absolute";
+  this.textElement.style.pointerEvents = "none";
+  this.textElement.style.margin = "0px";
+  this.textElement.style.overflow = "hidden";
+  this.textDrawFlag = false;
   this.color = color;
   this.id = id;
   this.draw = function(){
@@ -169,6 +229,18 @@ function uiBox(id,x,y,w,h,color,parent=null,locked=false,innerImage=null,text=nu
     oc.fillStyle = 'rgb('+this.id+',0,255)';
     c.fillRect(this.x,this.y,this.w,this.h);
     oc.fillRect(this.x,this.y,this.w,this.h);
+    if(this.text != null){
+      const rect = c.canvas.getBoundingClientRect();
+      this.textElement.innerText = this.text;
+      this.textElement.style.maxWidth = this.w + "px";
+      this.textElement.style.maxHeight = this.h + "px";
+      this.textElement.style.left = this.x + "px";
+      this.textElement.style.top = this.y + rect.top + "px";
+      if(this.textDrawFlag == false){
+        this.textElement = document.body.appendChild(this.textElement);
+        this.textDrawFlag = true;
+      }
+    }
   }
 }
 

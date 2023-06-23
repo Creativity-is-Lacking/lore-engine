@@ -36,7 +36,7 @@ Boxbtn.onclick = function() {
 Boxspan.onclick = function() {
   Boxmodal.style.display = "none";
 }
-Editspan.onclick = function() {
+Editspan.onmousedown = function() {
   Editmodal.style.display = "none";
 }
 useBoxDim.onclick = function() {
@@ -85,7 +85,7 @@ boxAdd.onclick = function() {
   boxMar.style.value = false;
   boxGrey.style.value = false;
 }
-window.onclick = function(event) {
+window.onmousedown = function(event) {
   if (event.target == Boxmodal) {
     Boxmodal.style.display = "none";
   }
