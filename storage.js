@@ -1,7 +1,7 @@
 function loadFromServer(project_identifier) {
     // I have decided that I do not care about security
     let request = new XMLHttpRequest();
-    request.open("post", 'http://150.136.114.136:1000/load', true);
+    request.open("post", 'https://150.136.114.136:1000/load', true);
     request.onreadystatechange = () => { // Call a function when the state changes.
         if (!request.readyState === XMLHttpRequest.DONE){
             return;
@@ -27,7 +27,7 @@ function loadFromServer(project_identifier) {
 function saveToServer(project_identifier, data){
     // I have decided that I do not care about security
     let request = new XMLHttpRequest();
-    request.open("post", 'http://150.136.114.136:1000/store', true);
+    request.open("post", 'https://150.136.114.136:1000/store', true);
     request.onreadystatechange = () => { // Call a function when the state changes.
         if (!request.readyState === XMLHttpRequest.DONE){
             return;
