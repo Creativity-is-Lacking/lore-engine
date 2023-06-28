@@ -1,8 +1,10 @@
 var Boxmodal = document.getElementById("Boxmodal");
 var Editmodal = document.getElementById("Editmodal");
+var Datamodal = document.getElementById("Datamodal");
 var Boxbtn = document.getElementById("Boxbtn");
 var Boxspan = document.getElementsByClassName("close")[0];
 var Editspan = document.getElementsByClassName("close")[1];
+var Dataspan = document.getElementsByClassName("close")[2];
 var useBoxDim = document.getElementById("useBoxDim");
 var boxDimCont = document.getElementById("boxDimCont");
 var useBoxSetColor = document.getElementById("useCustColor");
@@ -15,6 +17,9 @@ var boxBlue = document.getElementById("boxBlue");
 var boxMag = document.getElementById("boxMag");
 var boxMar = document.getElementById("boxMar");
 var boxGrey = document.getElementById("boxGrey");
+var dataLoad = document.getElementById("dataLoad");
+var dataSave = document.getElementById("dataSave");
+var pId = document.getElementById("pname");
 
 useBoxDim.defaultChecked = true;
 useBoxSetColor.defaultChecked = true;
@@ -38,6 +43,9 @@ Boxspan.onclick = function() {
 }
 Editspan.onmousedown = function() {
   Editmodal.style.display = "none";
+}
+Dataspan.onmousedown = function() {
+  Datamodal.style.display = "none";
 }
 useBoxDim.onclick = function() {
   if(useBoxDim.checked)
@@ -92,4 +100,19 @@ window.onmousedown = function(event) {
   if (event.target == Editmodal) {
     Editmodal.style.display = "none";
   }
+  if (event.target == Datamodal) {
+    Datamodal.style.display = "none";
+  }
 }
+
+dataLoad.onclick = function(){
+  loadFromServer(pId.value);
+  Datamodal.style.display = "none";
+  pId.value = "";
+};
+
+dataSave.onclick = function(){
+  saveToServer(pId.value, boxes);
+  Datamodal.style.display = "none";
+  pId.value = "";
+};

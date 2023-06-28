@@ -31,12 +31,15 @@ document.getElementById("edittype").addEventListener("change", (event)=> {
 document.getElementById("EditConfirm").addEventListener("click", (event) => {
     switch (etype) {
       case "1":
+        boxes[eactive].blankFlag = false;
         break;
       case "2":
+        boxes[eactive].blankFlag = false;
         boxes[eactive].text = document.getElementById("edittext").value;
         boxes[eactive].textColor = document.getElementById("edittextcolor").value;
         break;
       case "3":
+        boxes[eactive].blankFlag = true;
         break;
       default:
         console.log("default");

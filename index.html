@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./modal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="./argon2/argon2-bundled.min.js"></script>
     <script src="./storage.js"></script>
     <script defer src="./main.js"></script>
     <script defer src="./ui.js"></script>
@@ -16,7 +15,7 @@
     <script defer src="./render.js"></script>
     <script defer src="./objs.js"></script>
   </head>
-  <body>
+  <body style="overflow:hidden">
     <!---<div style="display: flex; flex-direction: row; justify-content: space-between; width: 150px;">
       <div>
         <div style="width:70px; height: 70px; background:midnightblue;"></div>
@@ -45,6 +44,7 @@
         <li class="nav-li"><a id="Forder">Bring Item Forward</a></li>
         <li class="nav-li"><a id="Border">Push Item Backward</a></li>
         <li class="nav-li"><a id="nop">No OP</a></li>
+        <li class="nav-li dropdown"><a href="javascript:void(0)" id="data">Data</a></li>
       </ul>
       <div id="Boxmodal" class="modal">
         <div class="modal-content">
@@ -95,7 +95,23 @@
           </div>
         </div>
       </div>
-      <canvas id="cvs" width="1200px" height="800px"></canvas>
+      <div id="Datamodal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="colFlex">
+            <label for="pname">Project Identifier:</label>
+            <input type="text" id="pname" style="width:10%">
+            <div class="rowFlex">
+              <button id="dataLoad">Load Data</button>
+              <button id="dataSave">Save Data</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="cvscont" style="overflow:auto">
+        <canvas id="cvs" width="1200px" height="800px"></canvas>
+        <canvas id="ocan" width="1200px" height="800px" style="display:none"></canvas>
+      </div>
       <!--<div id="notifCont">
         <div class="alert">
           <span class="closebtn">&times;</span>  

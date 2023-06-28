@@ -9,6 +9,7 @@ var order = document.getElementById("Porder");
 var forward = document.getElementById("Forder");
 var backward = document.getElementById("Border");
 var nop = document.getElementById("nop");
+var dataBtn = document.getElementById("data");
 
 move.onclick = function() {
   mode='';
@@ -113,3 +114,7 @@ nop.onclick = function() {
     document.getElementsByClassName("active")[i].className = '';
   nop.className = 'active';
 }
+dataBtn.onclick = function() {
+  document.getElementById('Datamodal').style.display = "block";
+}
+

@@ -1,29 +1,48 @@
-function loadFromServer(project_identifier, project_password) {
-    argon2.hash({ pass: project_identifier, salt: ''})
-    .then(hashid => {
-        hashid = hashid.hashHex;
-        argon2.hash({ pass: project_password, salt: ''})
-        .then(hashpass => {
-            hashpass = hashpass.hashHex;
-            let request = new XMLHttpRequest();
-            request.open("post", 'https://0.0.0.0/', true);
-            request.onreadystatechange = () => { // Call a function when the state changes.
-                if (!request.readyState === XMLHttpRequest.DONE){
-                    return;
-                }
-                if(request.status === 200) {
-                    // Request finished. Do processing here.
-                }
-            }
-            request.send({id: hashid, pass: hashpass});
-        })
-        .catch(e => console.error(e.message, e.code)); //TODO notify user of failure to access
-    })
-    .catch(e => console.error(e.message, e.code)); //TODO notify user of failure to access
+function loadFromServer(project_identifier) {
+    // I have decided that I do not care about security
+    let request = new XMLHttpRequest();
+    request.open("post", 'http://150.136.114.136:1000/load', true);
+    request.onreadystatechange = () => { // Call a function when the state changes.
+        if (!request.readyState === XMLHttpRequest.DONE){
+            return;
+        }
+        if(request.status === 200 && request.response != "") {
+            // Request finished. Do processing here.
+            console.log("load success");
+            tempArr = JSON.parse(request.response);
+            tempArr = JSON.parse(tempArr);
+            tempArr.forEach(element => {
+                boxes[element.id] = new uiBox(element.id, element.x, element.y, element.w, element.h, element.color, element.parent, element.locked, element.etype, element.text, element.textColor, element.innerImage);
+            });
+            elems = boxes.length;
+            renderObjs();
+        } else if(request.response != ""){
+            console.log("load failure");
+        }
+    }
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify({"id": project_identifier}));
 }
 
-function saveToServer(project_identifier, project_password){
-
+function saveToServer(project_identifier, data){
+    // I have decided that I do not care about security
+    let request = new XMLHttpRequest();
+    request.open("post", 'http://150.136.114.136:1000/store', true);
+    request.onreadystatechange = () => { // Call a function when the state changes.
+        if (!request.readyState === XMLHttpRequest.DONE){
+            return;
+        }
+        if(request.status === 200) {
+            // Request finished. Do processing here.
+            console.log(request.response);
+        } else {
+            console.log("save failed");
+        }
+    }
+    request.setRequestHeader('Content-Type', 'application/json');
+    const outgoingData = JSON.stringify({[project_identifier]:JSON.stringify(data)});
+    console.log(outgoingData);
+    request.send(outgoingData);
 }
 
 function uploadImage(){

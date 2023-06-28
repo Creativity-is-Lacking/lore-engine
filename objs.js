@@ -7,6 +7,7 @@ function uiBox(id,x,y,w,h,color,parent=null,locked=false,etype=null,text=null,te
   this.locked = locked;
   this.etype = etype;
   this.text = text;
+  this.blankFlag = false;
   this.innerImage = innerImage;
   this.textColor = textColor
   this.textElement = document.createElement("p");
@@ -24,7 +25,9 @@ function uiBox(id,x,y,w,h,color,parent=null,locked=false,etype=null,text=null,te
     oc.fillStyle = 'rgb('+this.id+',0,255)';
     c.fillRect(this.x,this.y,this.w,this.h);
     oc.fillRect(this.x,this.y,this.w,this.h);
-    if(this.text != null){
+    if(this.text != null && !this.blankFlag){
+        if(this.textElement.style.display = 'none')
+            this.textElement.style.display = '';
         if(this.textColor != null && this.textColor != this.textElement.style.color)
             this.textElement.style.color = this.textColor;
         const rect = c.canvas.getBoundingClientRect();
@@ -37,6 +40,19 @@ function uiBox(id,x,y,w,h,color,parent=null,locked=false,etype=null,text=null,te
           this.textElement = document.body.appendChild(this.textElement);
           this.textDrawFlag = true;
         }
+    }
+    if(this.blankFlag){
+        if(this.textElement != null)
+            this.textElement.style.display = 'none';
+        // add img blanking
+    }
+    if(canvas.width < (this.x + this.w)){
+      canvas.width = (this.x + 2*this.w);
+      ocan.width = (this.x + 2*this.w);
+    }
+    if(canvas.height < (this.y + this.h)){
+      canvas.height = (this.y + 2*this.h);
+      ocan.height = (this.y + 2*this.h);
     }
   }
 }

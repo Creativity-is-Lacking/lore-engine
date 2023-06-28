@@ -1,12 +1,15 @@
 var canvas = document.getElementById('cvs');
 var c = canvas.getContext('2d');
 c.font = "48px serif";
-var ocan = document.createElement("canvas");
+var ocan = document.getElementById("ocan");
 var oc = ocan.getContext('2d', {willReadFrequently: true});
+var cvscont = document.getElementById("cvscont");
 canvas.height = window.innerHeight - document.getElementsByClassName("nav-ul")[0].clientHeight;
 canvas.width = window.innerWidth;
 ocan.height = canvas.height;
 ocan.width = canvas.width;
+cvscont.height = canvas.height;
+cvscont.width = canvas.width;
 var offx = canvas.offsetLeft;
 var offy = canvas.offsetTop;
 var lastX = 0,lastY=0;
@@ -20,11 +23,24 @@ var boxes = new Array();
 var links = new Array();
 var highlights = new Array();
 
+cvscont.addEventListener("scroll", (event) => {
+  offx = canvas.offsetLeft - cvscont.scrollLeft;
+  offy = canvas.offsetTop - cvscont.scrollTop;
+});
+
 addEventListener("resize", (event) => {
-  canvas.height = window.innerHeight - document.getElementsByClassName("nav-ul")[0].clientHeight;
-  canvas.width = window.innerWidth;
-  ocan.height = canvas.height;
-  ocan.width = canvas.width;
+  let calcHeight = (window.innerHeight - document.getElementsByClassName("nav-ul")[0].clientHeight - (cvscont.offsetHeight - cvscont.clientHeight));
+  let calcWidth = window.innerWidth;
+  if(calcHeight > canvas.height){
+    canvas.height = calcHeight;
+    ocan.height = calcHeight
+  }
+  if(calcWidth > canvas.width){
+    canvas.width = calcWidth;
+    ocan.width = calcWidth
+  }
+  cvscont.style.height = calcHeight + "px";
+  cvscont.style.width = calcWidth+ "px";
   renderObjs();
 });
 
@@ -64,7 +80,7 @@ $('#cvs').mousedown(function(e){
         Array.from(document.getElementsByClassName("edittxt")).forEach(element => {element.style.display = "block"});
       if(editee.etype == "3")
         Array.from(document.getElementsByClassName("editblank")).forEach(element => {element.style.display = "block"});
-      document.getElementById('Editmodal').style.display = "block";
+      Editmodal.style.display = "block";
     }
     for(var i=0;i<=highlights.length;i++){
       highlights.pop();
