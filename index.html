@@ -6,10 +6,14 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./modal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script defer src="./general-events.js"></script>
+    <script defer src="./modal-variables.js"></script>
     <script src="./storage.js"></script>
     <script defer src="./main.js"></script>
     <script defer src="./ui.js"></script>
-    <script defer src="./modal.js"></script>
+    <script defer src="./box-modal.js"></script>
+    <script defer src="./circle-modal.js"></script>
+    <script defer src="./diamond-modal.js"></script>
     <script defer src="./notifs.js"></script>
     <script defer src="./edit.js"></script>
     <script defer src="./render.js"></script>
@@ -31,6 +35,8 @@
           <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
           <div class="dropdown-content">
             <a id="Boxbtn">Add Box</a>
+            <a id="Circlebtn">Add Circle</a>
+            <a id="Diamondbtn">Add Diamond</a>
           </div>
         </li>
         <li class="nav-li"><a id="move" class="active">Move</a></li>
@@ -72,6 +78,62 @@
               <button class="colorSel" id="boxGrey" style="background-color:dimgrey;"></button>
             </div>
             <button id="boxAdd">Create Box</button>
+          </div>
+        </div>
+      </div>
+      <div id="Circlemodal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="colFlex">
+            <div class="rowFlex">
+              <input type="checkbox" id="useCircleDim">
+              <p>use preset dimensions</p>
+            </div>
+            <div class="rowFlex" id="circleDimCont">
+              <input type="number" id="circleRad" min="1" max="1200">
+              <p> px radius by </p>
+            </div>
+            <div class="rowFlex">
+              <input type="checkbox" id="useCustColorCircle">
+              <p>use color presets</p>
+            </div>
+            <input type="color" id="circleColor">
+            <div class="rowFlex" id="circleColorCont">
+              <button class="colorSel" id="circleBlue" style="background-color:midnightblue;"></button>
+              <button class="colorSel" id="circleMag" style="background-color:darkmagenta;"></button>
+              <button class="colorSel" id="circleMar" style="background-color:maroon;"></button>
+              <button class="colorSel" id="circleGrey" style="background-color:dimgrey;"></button>
+            </div>
+            <button id="circleAdd">Create Circle</button>
+          </div>
+        </div>
+      </div>
+      <div id="Diamondmodal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="colFlex">
+            <div class="rowFlex">
+              <input type="checkbox" id="useDiamondDim">
+              <p>use preset dimensions</p>
+            </div>
+            <div class="rowFlex" id="diamondDimCont">
+              <input type="number" id="diamondWidth" min="1" max="1200">
+              <p> px height by </p>
+              <input type="number" id="diamondHeight" min="1" max="800">
+              <p> px width</p>
+            </div>
+            <div class="rowFlex">
+              <input type="checkbox" id="useCustColorDiamond">
+              <p>use color presets</p>
+            </div>
+            <input type="color" id="diamondColor">
+            <div class="rowFlex" id="diamondColorCont">
+              <button class="colorSel" id="diamondBlue" style="background-color:midnightblue;"></button>
+              <button class="colorSel" id="diamondMag" style="background-color:darkmagenta;"></button>
+              <button class="colorSel" id="diamondMar" style="background-color:maroon;"></button>
+              <button class="colorSel" id="diamondGrey" style="background-color:dimgrey;"></button>
+            </div>
+            <button id="diamondAdd">Create Diamond</button>
           </div>
         </div>
       </div>

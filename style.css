@@ -111,3 +111,67 @@ canvas {
  left: 0px;
  z-index: 5;
 }
+
+.squareText {
+  font-size:  18px;
+  text-align: center;
+  margin: 0px;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  color: white;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.circleText {
+  border-radius: 50%;
+  font-size: 18px;
+  text-align: center;
+  margin: 0px;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  color: white;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.diamondText{
+  font-size: 18px;
+  text-align: center;
+  margin: 0px;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  color: white;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  transform-origin: top left;
+}
+
+.diamondTextCorrection{
+  display: flex;
+  max-width: 125%;
+  max-height: 160%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: inherit;
+  font-size: 18px;
+  text-align: center;
+  margin: 0px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}

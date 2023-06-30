@@ -12,9 +12,14 @@ function loadFromServer(project_identifier) {
             tempArr = JSON.parse(request.response);
             tempArr = JSON.parse(tempArr);
             tempArr.forEach(element => {
-                boxes[element.id] = new uiBox(element.id, element.x, element.y, element.w, element.h, element.color, element.parent, element.locked, element.etype, element.text, element.textColor, element.innerImage);
+                if(element.type == "square")
+                    uiElements[element.id] = new uiBox(element.id, element.x, element.y, element.w, element.h, element.color, element.parent, element.locked, element.etype, element.text, element.textColor, element.innerImage);
+                if(element.type == "circle")
+                    uiElements[element.id] = new uiCircle(element.id, element.x, element.y, element.r, element.color);
+                if(element.type == "diamond")
+                    uiElements[element.id] = new uiDiamond(element.id, element.x, element.y, element.h, element.w, element.color);
             });
-            elems = boxes.length;
+            elems = uiElements.length;
             renderObjs();
         } else if(request.response != ""){
             console.log("load failure");

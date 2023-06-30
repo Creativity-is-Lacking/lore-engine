@@ -7,14 +7,20 @@ function getID(x,y){
 }
 
 function highlightObj(index) {
-  let newColor = hexToRgb(standardize_color(boxes[index].color));
+  let newColor = hexToRgb(standardize_color(uiElements[index].color));
   newColor.r = newColor.r*1.5;
   newColor.g = newColor.g*1.5;
   newColor.b = newColor.b*1.5;
-  let h = new uiBox(boxes[index].id,boxes[index].x-5,boxes[index].y-5,boxes[index].w+10,boxes[index].h+10,rgbToHex(newColor.r,newColor.g,newColor.b),boxes[index]);
+  let h;
+  if(uiElements[index].type == "square")
+    h = new uiBox(uiElements[index].id,uiElements[index].x-5,uiElements[index].y-5,uiElements[index].w+10,uiElements[index].h+10,rgbToHex(newColor.r,newColor.g,newColor.b),uiElements[index],true,null,null,null,null,true);
+  if(uiElements[index].type == "circle")
+    h = new uiCircle(uiElements[index].id,uiElements[index].x-5,uiElements[index].y-5, uiElements[index].r+10,rgbToHex(newColor.r,newColor.g,newColor.b),uiElements[index],true,null,null,null,null,true);
+  if(uiElements[index].type == "diamond")
+    h = new uiDiamond(uiElements[index].id,uiElements[index].x-5,uiElements[index].y-5, uiElements[index].h+10, uiElements[index].w+10,rgbToHex(newColor.r,newColor.g,newColor.b),uiElements[index],true,null,null,null,null,true);
   h.draw();
   for(var i=0;i<elems;i++){
-    boxes[i].draw();
+    uiElements[i].draw();
   }
   highlights.push(h);
 }
@@ -25,8 +31,8 @@ function renderObjs() {
   for(var i=0;i<highlights.length;i++){
     highlights[i].draw();
   }
-  for(var i=0;i<elems;i++){
-    boxes[i].draw();
+  for(var i=0;i<uiElements.length;i++){
+    uiElements[i].draw();
   }
   for(var i=0;i<links.length;i++){
     links[i].draw();

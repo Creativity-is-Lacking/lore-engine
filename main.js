@@ -19,37 +19,16 @@ var mode = '';
 var etype = 0;
 var eactive = -1;
 
-var boxes = new Array();
+var uiElements = new Array();
 var links = new Array();
 var highlights = new Array();
-
-cvscont.addEventListener("scroll", (event) => {
-  offx = canvas.offsetLeft - cvscont.scrollLeft;
-  offy = canvas.offsetTop - cvscont.scrollTop;
-});
-
-addEventListener("resize", (event) => {
-  let calcHeight = (window.innerHeight - document.getElementsByClassName("nav-ul")[0].clientHeight - (cvscont.offsetHeight - cvscont.clientHeight));
-  let calcWidth = window.innerWidth;
-  if(calcHeight > canvas.height){
-    canvas.height = calcHeight;
-    ocan.height = calcHeight
-  }
-  if(calcWidth > canvas.width){
-    canvas.width = calcWidth;
-    ocan.width = calcWidth
-  }
-  cvscont.style.height = calcHeight + "px";
-  cvscont.style.width = calcWidth+ "px";
-  renderObjs();
-});
 
 $(document).ready(function(){
 $('#cvs').mousedown(function(e){
   var x = e.pageX-offx;
   var y = e.pageY-offy;
   active = getID(x,y);
-  if(active >= 0 && boxes[active].locked) {
+  if(active >= 0 && uiElements[active].locked) {
     //create notif of locked status
     return;
   }
@@ -72,8 +51,8 @@ $('#cvs').mousedown(function(e){
     highlightObj(active);
     if(highlights.length>=1){
       eactive = active;
-      document.getElementById("edittext").value = boxes[active].text;
-      var editee = boxes[active];
+      document.getElementById("edittext").value = uiElements[active].text;
+      var editee = uiElements[active];
       if(editee.etype == "1")
         Array.from(document.getElementsByClassName("editimg")).forEach(element => {element.style.display = "block"});
       if(editee.etype == "2")
@@ -107,12 +86,12 @@ $('#cvs').mousedown(function(e){
   if(mode == 'Border' && active>=0){
     highlightObj(active);
     if(highlights.length>=1){
-      let tempObj = boxes[highlights[0].parent.id-1];
+      let tempObj = uiElements[highlights[0].parent.id-1];
       if(tempObj != null) {
-        boxes[highlights[0].parent.id-1] = boxes[highlights[0].parent.id];
-        boxes[highlights[0].parent.id] = tempObj;
-        boxes[highlights[0].parent.id].id = highlights[0].parent.id;
-        boxes[highlights[0].parent.id-1].id = tempObj.id-1;
+        uiElements[highlights[0].parent.id-1] = uiElements[highlights[0].parent.id];
+        uiElements[highlights[0].parent.id] = tempObj;
+        uiElements[highlights[0].parent.id].id = highlights[0].parent.id;
+        uiElements[highlights[0].parent.id-1].id = tempObj.id-1;
       }
       for(var i=0;i<=highlights.length;i++){
         highlights.pop();
@@ -123,12 +102,12 @@ $('#cvs').mousedown(function(e){
   if(mode == 'Forder' && active>=0){
     highlightObj(active);
     if(highlights.length>=1){
-      let tempObj = boxes[highlights[0].parent.id+1];
+      let tempObj = uiElements[highlights[0].parent.id+1];
       if(tempObj != null) {
-        boxes[highlights[0].parent.id+1] = boxes[highlights[0].parent.id];
-        boxes[highlights[0].parent.id] = tempObj;
-        boxes[highlights[0].parent.id].id = highlights[0].parent.id;
-        boxes[highlights[0].parent.id+1].id = tempObj.id+1;
+        uiElements[highlights[0].parent.id+1] = uiElements[highlights[0].parent.id];
+        uiElements[highlights[0].parent.id] = tempObj;
+        uiElements[highlights[0].parent.id].id = highlights[0].parent.id;
+        uiElements[highlights[0].parent.id+1].id = tempObj.id+1;
       }
       for(var i=0;i<=highlights.length;i++){
         highlights.pop();
@@ -138,7 +117,7 @@ $('#cvs').mousedown(function(e){
   if(mode == 'lock' && active >= 0) {
     highlightObj(active);
     if(highlights.length>=1){
-      boxes[active].locked = true;
+      uiElements[active].locked = true;
     }
     for(var i=0;i<=highlights.length;i++){
       highlights.pop();
@@ -150,8 +129,8 @@ $('#cvs').mousedown(function(e){
         var x = e.pageX-offx;
         var y = e.pageY-offy;
         if(active>=0){
-          boxes[active].x+=x-lastX;
-          boxes[active].y+=y-lastY;
+          uiElements[active].x+=x-lastX;
+          uiElements[active].y+=y-lastY;
         }
         lastX = x;
         lastY = y;
