@@ -159,13 +159,28 @@ function uiDiamond(id,x,y,h,w,color,parent=null,locked=false,etype=null,text=nul
     this.textElement.children[0].innerText = this.text;
     var tempH = Math.sqrt((this.h/2)**2+(this.w/2)**2);
     var theta = Math.atan((this.h/2)/(this.w/2));
-    var skewfac = (2*theta - (Math.PI/2))
+    var skewfac = (2*theta - (Math.PI/2));
+    var greaterDimension;
+    var lesserDimension;
+    if(this.h > this.w) {
+      greaterDimension = this.h;
+      lesserDimension = this.w;
+    } else {
+      greaterDimension = this.w;
+      lesserDimension = this.h;
+    };
+    var smallAspect = lesserDimension/greaterDimension;
+    var aspectCorrection = 1;
+    if(smallAspect <= (1/3)) aspectCorrection = 1 - 0.5*smallAspect;
     this.textElement.style.width = tempH + "px";
-    this.textElement.style.height = tempH + "px";
+    this.textElement.style.height = (Math.abs((1 / Math.tan(skewfac))*greaterDimension)/(smallAspect+aspectCorrection))/2 + "px";
+    if(skewfac == 0){
+      this.textElement.style.height = tempH + "px";
+    }
     this.textElement.style.left = this.x + this.w/2 + "px";
     this.textElement.style.top = this.y + c.canvas.getBoundingClientRect().top + "px";
     this.textElement.style.transform = 'rotate(' + theta + 'rad) skew(' + skewfac + 'rad)';
-    this.textElement.children[0].style.transform = 'skew(-' + skewfac + 'rad) rotate(-' + theta + 'rad)';
+    this.textElement.children[0].style.transform = 'skew(' + (0 - skewfac) + 'rad) rotate(-' + theta + 'rad)';
     if(this.textDrawFlag == false){
       this.textElement = document.body.appendChild(this.textElement);
       this.textDrawFlag = true;
